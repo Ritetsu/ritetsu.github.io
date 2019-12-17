@@ -412,14 +412,7 @@ height:50vh;
 <blockquote>
 <p>TomMitchell:<br>一个程序从经验E中学习，解决任务T，达到性能度量值P；当且仅当有了经验E后，经P评判，程序处理T时的性能有所提高。</p>
 </blockquote>
-<h2 id="从单变量的线性回归开始"><a href="#从单变量的线性回归开始" class="headerlink" title="从单变量的线性回归开始"></a>从单变量的线性回归开始</h2><p>特征的数量：</p>
-<script type="math/tex; mode=display">1</script><p>训练集中实例的数量：</p>
-<script type="math/tex; mode=display">m</script><p>特征/输入变量：</p>
-<script type="math/tex; mode=display">x</script><p>目标/输出变量：</p>
-<script type="math/tex; mode=display">y</script><p>训练集中的实例：</p>
-<script type="math/tex; mode=display">(x,y)</script><p>训练集中第i个实例：</p>
-<script type="math/tex; mode=display">(x^{(i)},y^{(i)})</script><p>函数/假设：</p>
-<script type="math/tex; mode=display">h</script><p>单变量线性回归问题：<script type="math/tex">h_\theta(x)=\theta_0+\theta_1x</script><br>代价函数（建模误差）：<script type="math/tex">J(\theta_0,\theta_1)=\cfrac{1}{2m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2</script><br>我们的目标是建立模型h，使得代价函数J最小，即：<script type="math/tex">\underbrace{minimize}_{\theta_0,\theta_1}J(\theta_0,\theta_1)</script></p>
+<h2 id="从单变量的线性回归开始"><a href="#从单变量的线性回归开始" class="headerlink" title="从单变量的线性回归开始"></a>从单变量的线性回归开始</h2><p>特征的数量：<script type="math/tex">1</script><br>训练集中实例的数量：<script type="math/tex">m</script><br>特征/输入变量：<script type="math/tex">x</script><br>目标/输出变量：<script type="math/tex">y</script><br>训练集中的实例：<script type="math/tex">(x,y)</script><br>训练集中第i个实例：<script type="math/tex">(x^{(i)},y^{(i)})</script><br>函数/假设：<script type="math/tex">h</script><br>单变量线性回归问题：<script type="math/tex">h_\theta(x)=\theta_0+\theta_1x</script><br>代价函数（建模误差）：<script type="math/tex">J(\theta_0,\theta_1)=\cfrac{1}{2m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2</script><br>我们的目标是建立模型h，使得代价函数J最小，即：<script type="math/tex">\underbrace{minimize}_{\theta_0,\theta_1}J(\theta_0,\theta_1)</script></p>
 <h3 id="批量梯度下降-同时更新2个theta-："><a href="#批量梯度下降-同时更新2个theta-：" class="headerlink" title="批量梯度下降(同时更新2个theta)："></a>批量梯度下降(同时更新2个theta)：</h3><script type="math/tex; mode=display">\theta_j:=\theta_j-\alpha\cfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)</script><p>（更新theta的原理在于后面的导数项，通过斜率正负确保随着theta的增大或减小，J(theta）一定随之减小，同时因为J(theta)的斜率变化，theta的变化也随着J的减小而减小，如在接近局部最低点时导数接近0，此时梯度下降法会自动采取更小的幅度）。</p>
 <p>所以梯度下降的实现关键在于求出代价函数J的导数：</p>
 <script type="math/tex; mode=display">\cfrac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)=\cfrac{\partial}{\partial\theta_j}\cfrac{1}{2m}\sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})^2</script><p>j=0：</p>
@@ -429,13 +422,11 @@ height:50vh;
 <script type="math/tex; mode=display">\theta=(X^TX)^{(-1)}X^Ty</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">normalEqn</span><span class="params">(X,y)</span>:</span></span><br><span class="line">    theta=np.linalg.inv(X.T@X)@X.T@y</span><br><span class="line">    <span class="keyword">return</span> theta</span><br></pre></td></tr></table></figure>
 <h2 id="多维特征情形"><a href="#多维特征情形" class="headerlink" title="多维特征情形"></a>多维特征情形</h2><h3 id="通用情形"><a href="#通用情形" class="headerlink" title="通用情形"></a>通用情形</h3><p>特征的数量：<script type="math/tex">n</script><br>训练集中的实例成为行向量<script type="math/tex">x^{(i)}</script><br>第i个训练实例的第j个特征<script type="math/tex">x_j^{(i)}</script><br>X是类似m×n的矩阵，m是实例个数，n是特征个数</p>
 <p>多变量的假设：<script type="math/tex">h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+...+\theta_nx_n</script><br>为了简化公式，引入$x_0=1$：</p>
-<script type="math/tex; mode=display">h_\theta(x)=\theta_0x_0+\theta_1x_1+\theta_2x_2+...+\theta_nx_n</script><p>即：</p>
-<script type="math/tex; mode=display">h_\theta(x)=\theta^T(X)</script><p>我们的目标和单变量情形下一样，只不过theta更多：</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta_0x_0+\theta_1x_1+\theta_2x_2+...+\theta_nx_n</script><p>即：<script type="math/tex">h_\theta(x)=\theta^T(X)</script><br>我们的目标和单变量情形下一样，只不过theta更多：</p>
 <script type="math/tex; mode=display">\theta_0=\theta_0-\alpha\cfrac{1}{m}\sum_{i=1}^m((h_\theta(x^{(i)})-y^{(i)})·x_0^{(i)})</script><script type="math/tex; mode=display">\theta_1=\theta_1-\alpha\cfrac{1}{m}\sum_{i=1}^m((h_\theta(x^{(i)})-y^{(i)})·x_1^{(i)})</script><script type="math/tex; mode=display">...</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">computeCost</span><span class="params">(X,y,theta)</span>:</span></span><br><span class="line">    inner=np.power(((X*theta.T)-y),<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> np.sum(inner)/(<span class="number">2</span>*len(X))</span><br><span class="line"><span class="comment">#len(X)代表m而不是n，注意！</span></span><br></pre></td></tr></table></figure>
-<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><h4 id="特征放缩"><a href="#特征放缩" class="headerlink" title="特征放缩"></a>特征放缩</h4><p>当两个特征值范围差的很远，如0-5和0-2000时，代价函数的等高线图能看出图像很扁，梯度下降也需要非常多次迭代才能收敛，方法是尝试将所有特征的尺度都缩放到-1到1之间：</p>
-<script type="math/tex; mode=display">x_n=\cfrac{x_n-\mu_n}{s_n}</script><p>(平均值$\mu_n$，标准差$s_n$)</p>
-<h4 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h4><p>梯度下降算法的迭代受到学习率alpha的影响，如果学习率过小，则达到收敛所需的迭代次数会非常高；如过大，则每次迭代可能不会减小代价函数，越过局部最小值而导致无法收敛。<br>建议的学习率：</p>
-<script type="math/tex; mode=display">\alpha=0.01,0.03,0.1,0.3,1,3,10</script><p>(P.S.文中偶尔出现代码使用的是Python3，因为是用JupyterNotebook写的笔记，所以顺手可以跑点Python代码测试一下😁)</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><h4 id="特征放缩"><a href="#特征放缩" class="headerlink" title="特征放缩"></a>特征放缩</h4><p>当两个特征值范围差的很远，如0-5和0-2000时，代价函数的等高线图能看出图像很扁，梯度下降也需要非常多次迭代才能收敛，方法是尝试将所有特征的尺度都缩放到-1到1之间：<script type="math/tex">x_n=\cfrac{x_n-\mu_n}{s_n}</script><br>(平均值$\mu_n$，标准差$s_n$)</p>
+<h4 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h4><p>梯度下降算法的迭代受到学习率alpha的影响，如果学习率过小，则达到收敛所需的迭代次数会非常高；如过大，则每次迭代可能不会减小代价函数，越过局部最小值而导致无法收敛。<br>建议的学习率：<script type="math/tex">\alpha=0.01,0.03,0.1,0.3,1,3,10</script></p>
+<p>(P.S.文中偶尔出现代码使用的是Python3，因为是用JupyterNotebook写的笔记，所以顺手可以跑点Python代码测试一下😁)</p>
 
     </article>
     <!-- license  -->
@@ -444,7 +435,7 @@ height:50vh;
             <p>原文作者：<a href="http://li-zhe.com">LiZhe</a>
             <p>原文链接：<a href="http://li-zhe.com/posts/1805300341/">http://li-zhe.com/posts/1805300341/</a>
             <p>发表日期：<a href="http://li-zhe.com/posts/1805300341/">December 17th 2019, 9:44:34 am</a>
-            <p>更新日期：<a href="http://li-zhe.com/posts/1805300341/">December 17th 2019, 11:17:25 am</a>
+            <p>更新日期：<a href="http://li-zhe.com/posts/1805300341/">December 17th 2019, 11:34:48 am</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0国际许可协议</a>进行许可，转载请注明出处~</p>
         </div>
     
@@ -732,7 +723,24 @@ jsonContent:
     
         <script src="/scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+#<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+#<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 
