@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="default">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="LiZhe">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="LiZhe">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习 · LiZhe&#39;s Virtual Part</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/ene_favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"搜搜搜!","hits_empty":"抱歉，没能找到关于 ${query} 的内容Qrz...","hits_stats":"${hits} 个关于 ${query} 的结果"}')
+
+            var algolia = {
+                applicationID: 'H5DJ2SWD7G',
+                apiKey: '8c3b4ebde46155c49b81ef72a1aca54c',
+                indexName: 'lizhe',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >LiZhe&#39;s Virtual Part</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>LiZhe's Virtual Part</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "机器学习">机器学习</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "推荐系统">推荐系统</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "大规模机器学习">大规模机器学习</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/12/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p>本文为吴恩达《机器学习》课程学习笔记的第6篇；<br>视频/作业/PPT等资源可在<a href="https://zh.coursera.org/learn/machine-learning" target="_blank" rel="noopener">Coursera</a>和<a href="https://study.163.com/course/courseLearn.htm?courseId=1004570029#/learn/video?lessonId=1049052745&amp;courseId=1004570029" target="_blank" rel="noopener">网易云课堂</a>等处找到；<br>其余篇章可见左侧Cate里的“Andrew Ng《Machine Learning》笔记”。</p>
+</blockquote>
+<h2 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h2><p>想想网易云音乐是如何进行每日推荐？这就是推荐系统。</p>
+<h3 id="基于内容的推荐系统"><a href="#基于内容的推荐系统" class="headerlink" title="基于内容的推荐系统"></a>基于内容的推荐系统</h3><p>假设有不同部电影，有不同的人给他们打分，每部电影有不同的特征（如2个）【向量形式】；如何基于这些信息来构建一个推荐系统算法呢？——假设用线性回归模型：</p>
+<p>$\theta^{(j)}$是用户j的参数向量（打分情况）</p>
+<p>$x^{(i)}$是电影i的特征向量（浪漫程度、动作程度等）</p>
+<p>对于用户j和电影i，我们预测评分为：</p>
+<script type="math/tex; mode=display">(\theta^{(i)})^Tx^{(i)}</script><p>之后参照线性回归和梯度下降求解。</p>
+<h3 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h3><p>如果我们没有用户的参数（评分），也没有电影的特征（浪漫程度、动作程度），可以通过协同过滤算法同时学习两者：</p>
+<p>优化目标（代价函数）更改为同时针对x和$\theta$进行，具体步骤如下：</p>
+<p>1.初始的x和$\theta$为一些随机的小值；</p>
+<p>2.使用梯度下降算法最小化代价函数；</p>
+<p>3.训练完算法后，预测用户j给电影i的评分。</p>
+<h3 id="向量化：低秩矩阵分解（？）"><a href="#向量化：低秩矩阵分解（？）" class="headerlink" title="向量化：低秩矩阵分解（？）"></a>向量化：低秩矩阵分解（？）</h3><h3 id="均值归一化"><a href="#均值归一化" class="headerlink" title="均值归一化"></a>均值归一化</h3><p>当某用户没有任何基础参数时，怎么办呢？→对所有数据进行均值归一化处理（减去均值），利用处理后的新矩阵来训练算法，用新训练出的算法预测评分后，将平均值加回去！即预测：</p>
+<script type="math/tex; mode=display">(\theta^{(i)})^T+\mu_i</script><h2 id="大规模机器学习"><a href="#大规模机器学习" class="headerlink" title="大规模机器学习"></a>大规模机器学习</h2><p>当有大量数据（如1000w条）作为训练集时，我们如何应对？</p>
+<p>可以作出交叉验证集的代价函数和训练集代价函数随着训练样本数增加的变化曲线，或许只需要1000个训练集就能取得很好的结果。</p>
+<h3 id="随机梯度下降法"><a href="#随机梯度下降法" class="headerlink" title="随机梯度下降法"></a>随机梯度下降法</h3><p>将代价函数定义为一个单一训练实例的代价：</p>
+<script type="math/tex; mode=display">cost(\theta,(x^{(i)},y^{(i)})=\cfrac{1}{2}(h_\theta(x^{(i)})-y^{(i)})^2</script><p><strong>随机</strong>的意思即，对训练集随机“洗牌”，然后：</p>
+<script type="math/tex; mode=display">
+Repeat(usually 1-10)
+{
+   for i=1:m{
+       \theta:=\theta_j-\alpha(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)}
+     (for j=0:n)
+   }
+}</script><p>其好处在于每一次计算后都更新$\theta$，而不需将大量训练集求和。缺点是，并不是每一步都朝正确的方向走去，甚至有可能无法走到最小值的那一点，而是在最小值点附近徘徊。</p>
+<h3 id="小批量梯度下降"><a href="#小批量梯度下降" class="headerlink" title="小批量梯度下降"></a>小批量梯度下降</h3><p>介于批量梯度下降和随机下降算法之间，每计算常数b次训练实例，便更新一次参数$\theta$，一般令b=2-100，从而可以用项量化的方式来循环b个训练实例。</p>
+<h3 id="随机梯度下降收敛"><a href="#随机梯度下降收敛" class="headerlink" title="随机梯度下降收敛"></a>随机梯度下降收敛</h3><p>在随机梯度下降中，每一次更新$\theta$之前都计算一次代价，然后每x次迭代后，求出这x次对训练实例计算代价的平均值，然后绘制这些平均值与x迭代的次数之间的函数图表。</p>
+<p>1.函数图像颠簸不平，但<strong>不明显减少</strong>：考虑增大$\alpha$</p>
+<p>2.函数图像<strong>不断上升</strong>：考虑减小$\alpha$，如令学习率随迭代次数的增加而减小，比如：</p>
+<script type="math/tex; mode=display">\alpha=\cfrac{const1}{iterationNumber+const2}</script><h3 id="在线学习"><a href="#在线学习" class="headerlink" title="在线学习"></a>在线学习</h3><p>有连续的数据流，而非静态的数据集。</p>
+<p>因而也是对一个单一实例进行训练，而非训练集！且一旦一个数据学习完成了，可以丢弃之。</p>
+<h3 id="映射化简和数据并行"><a href="#映射化简和数据并行" class="headerlink" title="映射化简和数据并行"></a>映射化简和数据并行</h3><p>把数据集分配给多台计算机，每个计算机求一个子集，再将结果汇总。（或者利用多核CPU的多个核心进行并行运算）<br>假设400个训练实例被分配到4台计算机进行处理，最后</p>
+<script type="math/tex; mode=display">\theta_j=\theta_j-\alpha\cfrac{1}{400}(temp^{(1)})(temp^{(2)})(temp^{(3)})(temp^{(4)})</script><h2 id="应用实例：图片文字识别"><a href="#应用实例：图片文字识别" class="headerlink" title="应用实例：图片文字识别"></a>应用实例：图片文字识别</h2><p>从图片中识取文字并辨认出来：</p>
+<p>1.文字侦测——将图片上的文字与其他环境对象分离</p>
+<p>2.字符切分——将文字分割成一个个单一的字符</p>
+<p>3.字符分类——确定每一个字符是什么</p>
+<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p>按比例框定窗口，按比例放大缩小扫描整张图片。交给模型进行评判。完成识别后，还可以将识别区域进行扩展。</p>
+<h3 id="获得大量数据和人工数据"><a href="#获得大量数据和人工数据" class="headerlink" title="获得大量数据和人工数据"></a>获得大量数据和人工数据</h3><p>人工数据——如识别文字，可以用字体库+背景自己创造数据</p>
+<p>已有数据修改——如文字图片的扭曲、旋转和模糊处理</p>
+<p>手动标记或众包</p>
+<h3 id="上限分析"><a href="#上限分析" class="headerlink" title="上限分析"></a>上限分析</h3><p>在改进算法的过程中，假设某一个步骤（人工地使之）完全正确，对比不人工处理情况下的预测准确率，对不同的步骤都进行处理，选择改进空间最大的着力改进。</p>
+<p>—</p>
+<p>以上，机器学习的笔记暂时告一段落。这些都是暑假后半段自学的内容，再输出一遍同时自己也复习一下。如果有补充可能会直接文内更新/在新文章里加对应tag。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://li-zhe.com">LiZhe</a>
+            <p>原文链接：<a href="http://li-zhe.com/posts/1648416303/">http://li-zhe.com/posts/1648416303/</a>
+            <p>发表日期：<a href="http://li-zhe.com/posts/1648416303/">December 21st 2019, 12:17:34 pm</a>
+            <p>更新日期：<a href="http://li-zhe.com/posts/1648416303/">January 2nd 2020, 9:14:07 am</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0国际许可协议</a>进行许可，转载请注明出处~</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/posts/3590534990/" title= "2019年的总结&2020年的FLAG">
+                    <div class="nextTitle">2019年的总结&2020年的FLAG</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/posts/1635273383/" title= "机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)">
+                    <div class="prevTitle">机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <div id="comment"></div>
+    <script>
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false, 
+        appId: "gsJ3vSKSro7zcbM3biQU067a-gzGzoHsz",
+        appKey: "FrMNhLRu1vMgo93sU7tMbJOi",
+        placeholder: "来都来了，评论一下？♪(´▽｀)",
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    </script>
+
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1149875285@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/wx2.jpg" />
+                </span>
+            
+        
+    
+        
+            
+                <a href="https://www.zhihu.com/people/bai-bei-shao-nian/activities" class="iconfont-archer zhihu" target="_blank" title=zhihu></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Thank for <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+    
+    <span id="busuanzi_container_site_uv">Visitors: <span id="busuanzi_value_site_uv"></span> XD</span>
+    
+    </div>
+    
+</footer>
+
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐系统"><span class="toc-number">1.</span> <span class="toc-text">推荐系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于内容的推荐系统"><span class="toc-number">1.1.</span> <span class="toc-text">基于内容的推荐系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协同过滤"><span class="toc-number">1.2.</span> <span class="toc-text">协同过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向量化：低秩矩阵分解（？）"><span class="toc-number">1.3.</span> <span class="toc-text">向量化：低秩矩阵分解（？）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#均值归一化"><span class="toc-number">1.4.</span> <span class="toc-text">均值归一化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#大规模机器学习"><span class="toc-number">2.</span> <span class="toc-text">大规模机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#随机梯度下降法"><span class="toc-number">2.1.</span> <span class="toc-text">随机梯度下降法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小批量梯度下降"><span class="toc-number">2.2.</span> <span class="toc-text">小批量梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随机梯度下降收敛"><span class="toc-number">2.3.</span> <span class="toc-text">随机梯度下降收敛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在线学习"><span class="toc-number">2.4.</span> <span class="toc-text">在线学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射化简和数据并行"><span class="toc-number">2.5.</span> <span class="toc-text">映射化简和数据并行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用实例：图片文字识别"><span class="toc-number">3.</span> <span class="toc-text">应用实例：图片文字识别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#滑动窗口"><span class="toc-number">3.1.</span> <span class="toc-text">滑动窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获得大量数据和人工数据"><span class="toc-number">3.2.</span> <span class="toc-text">获得大量数据和人工数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上限分析"><span class="toc-number">3.3.</span> <span class="toc-text">上限分析</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 8
+        </div>
+        <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/31</span><a class="archive-post-title" href= "/posts/3590534990/" >2019年的总结&2020年的FLAG</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/posts/1648416303/" >机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/posts/1635273383/" >机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/posts/4293844555/" >机器学习(4)--支持向量机(Support Vector Machine)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/posts/1348010069/" >机器学习(3)--神经网络(Neural Network)及模型改进</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/posts/438233758/" >机器学习(2)--逻辑回归(Logistic Regression)及正则化(Normalization)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/posts/1805300341/" >机器学习(1)--单变量线性回归及多维特征情形</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/posts/1243066710/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="逻辑回归"><span class="iconfont-archer">&#xe606;</span>逻辑回归</span>
+    
+        <span class="sidebar-tag-name" data-tags="正则化"><span class="iconfont-archer">&#xe606;</span>正则化</span>
+    
+        <span class="sidebar-tag-name" data-tags="线性回归"><span class="iconfont-archer">&#xe606;</span>线性回归</span>
+    
+        <span class="sidebar-tag-name" data-tags="梯度下降"><span class="iconfont-archer">&#xe606;</span>梯度下降</span>
+    
+        <span class="sidebar-tag-name" data-tags="神经网络"><span class="iconfont-archer">&#xe606;</span>神经网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="模型改进"><span class="iconfont-archer">&#xe606;</span>模型改进</span>
+    
+        <span class="sidebar-tag-name" data-tags="支持向量机"><span class="iconfont-archer">&#xe606;</span>支持向量机</span>
+    
+        <span class="sidebar-tag-name" data-tags="无监督学习"><span class="iconfont-archer">&#xe606;</span>无监督学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="异常检测"><span class="iconfont-archer">&#xe606;</span>异常检测</span>
+    
+        <span class="sidebar-tag-name" data-tags="推荐系统"><span class="iconfont-archer">&#xe606;</span>推荐系统</span>
+    
+        <span class="sidebar-tag-name" data-tags="大规模机器学习"><span class="iconfont-archer">&#xe606;</span>大规模机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="随笔"><span class="iconfont-archer">&#xe60a;</span>随笔</span>
+    
+        <span class="sidebar-category-name" data-categories="AndrewNg《MachineLearning》笔记"><span class="iconfont-archer">&#xe60a;</span>AndrewNg《MachineLearning》笔记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "LiZhe"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
+
+

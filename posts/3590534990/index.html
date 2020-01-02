@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="default">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="LiZhe">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="LiZhe">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>2019年的总结&amp;2020年的FLAG · LiZhe&#39;s Virtual Part</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/ene_favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"搜搜搜!","hits_empty":"抱歉，没能找到关于 ${query} 的内容Qrz...","hits_stats":"${hits} 个关于 ${query} 的结果"}')
+
+            var algolia = {
+                applicationID: 'H5DJ2SWD7G',
+                apiKey: '8c3b4ebde46155c49b81ef72a1aca54c',
+                indexName: 'lizhe',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >LiZhe&#39;s Virtual Part</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">2019年的总结&2020年的FLAG</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>LiZhe's Virtual Part</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/waitan.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            2019年的总结&2020年的FLAG
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "随笔">随笔</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.5k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/12/31</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p>入夜莫名焦虑开始怀(自)旧(黑)。进入大学以来我好像一直在忙各种各样的事情，习惯了独来独往之后才发现更喜欢那种身边都是熟悉的人的感觉。有时候真想回到初三把所有人的同学录都好好地再写一遍，而不是草草地“少年珍重！”四个大字结束，那真的是我最不走心，也最开心的三年了。高中的日子快得来不及回想，但唯独那些人的笑容我竟也还记得清楚。<br>2018年，我一定要过得更深刻一些。</p>
+</blockquote>
+<p>以上是2017年1月8日我写下的总结，回首望去，原来3年前我就意识到了自己不是真的喜欢孤独，但却直到现在才开始正视它。</p>
+<p>太惭愧了。</p>
+<h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><h2 id="1-N2测试：有惊无险；"><a href="#1-N2测试：有惊无险；" class="headerlink" title="1.N2测试：有惊无险；"></a>1.N2测试：有惊无险；</h2><p>现在我有底气对每一个想考N2的人轻描淡写地说“N2不难。”了。可惜N2考前的那段时光恐怕就是我迄今的日语水平巅峰了，毕竟双学位结课后基本上没什么机会用到日语。</p>
+<p>得赶紧把去日本旅游提上日程，好好锻炼一下日语的口语。</p>
+<h2 id="2-日语双学位：后知后觉；"><a href="#2-日语双学位：后知后觉；" class="headerlink" title="2. 日语双学位：后知后觉；"></a>2. 日语双学位：后知后觉；</h2><p>双学位的课程顺利结束了，而我一如既往地在彻底结束后一段时间才真切地意识到这件事情。</p>
+<p>当周六早上顺着生物钟醒来却发现没有课可以上，当在食堂里和很久不见的只有在双学位课上才有机会多看几眼的同学相遇，当瞥见书桌上的日语教材和笔记却突然回想不起这是哪一门课留下的记录时，我才突然反应过来，原来和一群在某些亚文化圈有高度重合的兴趣的人们就此别过了。</p>
+<p>出于胆怯（本来想写礼貌，考虑到在批判自己，还是写的真切一点好），我没能和其中感兴趣的几个人建立更深的联系，以后只能做朋友圈的点赞之交，属实是今年的一大遗憾。</p>
+<h2 id="3-自学生信：重大抉择；"><a href="#3-自学生信：重大抉择；" class="headerlink" title="3. 自学生信：重大抉择；"></a>3. 自学生信：重大抉择；</h2><p>不得不说学院把《生物信息学》排在大三下学期属实是坑。为了不在夏令营时只能和老师谈情怀和说“我不会但我可以学”这种p话，我在寒假回家后紧急开始了自学。毫无生信基础的我一开始学得一头雾水，一个隐马尔可夫模型看了几天都看不明白，导致寒假一度在家学到自闭。开学后试图去北大做科研训练，但仅凭一个寒假的入门性学习我还是没能跟上师兄师姐们嘴里的深度学习和卷积神经网络。受到打击的我在最后一个学期抽出时间学了很多东西，包括生信/R/Python/机器学习甚至C语言。下定决心花时间去学算是我做出的重大抉择了，当然世界线的变动可能在几个月之前的某堂课上，那又是另一个故事了。</p>
+<h2 id="4-夏令营：一言难蔽；"><a href="#4-夏令营：一言难蔽；" class="headerlink" title="4. 夏令营：一言难蔽；"></a>4. 夏令营：一言难蔽；</h2><p>我为什么放弃出国留学，是怎样和TOP2失之交臂，又为何在高校和中科院之间选择了后者，以及各种对三观造成冲击的遭遇。</p>
+<p>这其中的每一件事细说起来都能写出几千字的长文，考虑到最终的结果还没有完全确定，这一段先作罢。</p>
+<h2 id="5-人际交往：一塌糊涂；"><a href="#5-人际交往：一塌糊涂；" class="headerlink" title="5. 人际交往：一塌糊涂；"></a>5. 人际交往：一塌糊涂；</h2><p>我没有毁掉任何已有的人际关系。我相信我和朋友们的友谊依旧坚如磐石。</p>
+<p>一塌糊涂的是我在这方面几乎没有成长，没有主动地去结识感兴趣的人。换而言之，我在不那么熟悉的人面前还是放不开，感觉像是一种极度扭曲的“偶像光环”。当然我不是偶像，也深知没有人会特别关注到我。但我心里总觉得与其留下不好的奇怪的印象，倒不如不去过多地展现自己。这种想法在形式上的体现是日常生活中的独行者，朋友圈里不留痕迹的过客；造成的结果是主动斩断了自己为数不多的社交。</p>
+<p>当我数次想出去吃东西或者去哪玩玩逛逛，却只能想出几个屈指可数的人选，而他们偏偏还不想去时，我觉得2020年我需要在这方面做出一些改变。</p>
+<h2 id="6-异性关系：注孤生；"><a href="#6-异性关系：注孤生；" class="headerlink" title="6. 异性关系：注孤生；"></a>6. 异性关系：注孤生；</h2><p>真的，我兴许就是初中遇见太多惯着我的可爱的人，高中又幸运地结识并发展了初恋，耗尽了异性缘；大学三年愣是没有什么故事可说。虽是被人表白过一次，但是回想起事情发生的突然和人设的巨大反差，我总怀疑这件事并没有发生过。</p>
+<p>一边有所期待有所企望，一边却又不愿意将就、不愿意“屈尊”主动，说是注孤生应该没有毛病。</p>
+<h1 id="2020"><a href="#2020" class="headerlink" title="2020"></a>2020</h1><p>喜闻乐见的立FLAG环节。</p>
+<h3 id="去一次日本，全程只允许自己说日语；"><a href="#去一次日本，全程只允许自己说日语；" class="headerlink" title="去一次日本，全程只允许自己说日语；"></a>去一次日本，全程只允许自己说日语；</h3><h3 id="结识1个以上异性朋友，能一起为了看电影而去看电影的那种；"><a href="#结识1个以上异性朋友，能一起为了看电影而去看电影的那种；" class="headerlink" title="结识1个以上异性朋友，能一起为了看电影而去看电影的那种；"></a>结识1个以上异性朋友，能一起为了看电影而去看电影的那种；</h3><h3 id="做事情更“莽”一些，遵从内心最初的想法而不是思来想去得一个“看上去最优”的解；"><a href="#做事情更“莽”一些，遵从内心最初的想法而不是思来想去得一个“看上去最优”的解；" class="headerlink" title="做事情更“莽”一些，遵从内心最初的想法而不是思来想去得一个“看上去最优”的解；"></a>做事情更“莽”一些，遵从内心最初的想法而不是思来想去得一个“看上去最优”的解；</h3><p>别的几点前睡觉，睡前不玩手机，xx考多少分之类的就不立了，感觉没什么意思；</p>
+<p>后续想到新的FLAG再补充，就先这样吧~</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://li-zhe.com">LiZhe</a>
+            <p>原文链接：<a href="http://li-zhe.com/posts/3590534990/">http://li-zhe.com/posts/3590534990/</a>
+            <p>发表日期：<a href="http://li-zhe.com/posts/3590534990/">December 31st 2019, 11:59:59 pm</a>
+            <p>更新日期：<a href="http://li-zhe.com/posts/3590534990/">January 2nd 2020, 10:52:12 am</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0国际许可协议</a>进行许可，转载请注明出处~</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/posts/1648416303/" title= "机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习">
+                    <div class="prevTitle">机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <div id="comment"></div>
+    <script>
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false, 
+        appId: "gsJ3vSKSro7zcbM3biQU067a-gzGzoHsz",
+        appKey: "FrMNhLRu1vMgo93sU7tMbJOi",
+        placeholder: "来都来了，评论一下？♪(´▽｀)",
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    </script>
+
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1149875285@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/wx2.jpg" />
+                </span>
+            
+        
+    
+        
+            
+                <a href="https://www.zhihu.com/people/bai-bei-shao-nian/activities" class="iconfont-archer zhihu" target="_blank" title=zhihu></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Thank for <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+    
+    <span id="busuanzi_container_site_uv">Visitors: <span id="busuanzi_value_site_uv"></span> XD</span>
+    
+    </div>
+    
+</footer>
+
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019"><span class="toc-number">1.</span> <span class="toc-text">2019</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-N2测试：有惊无险；"><span class="toc-number">1.1.</span> <span class="toc-text">1.N2测试：有惊无险；</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-日语双学位：后知后觉；"><span class="toc-number">1.2.</span> <span class="toc-text">2. 日语双学位：后知后觉；</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-自学生信：重大抉择；"><span class="toc-number">1.3.</span> <span class="toc-text">3. 自学生信：重大抉择；</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-夏令营：一言难蔽；"><span class="toc-number">1.4.</span> <span class="toc-text">4. 夏令营：一言难蔽；</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-人际交往：一塌糊涂；"><span class="toc-number">1.5.</span> <span class="toc-text">5. 人际交往：一塌糊涂；</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-异性关系：注孤生；"><span class="toc-number">1.6.</span> <span class="toc-text">6. 异性关系：注孤生；</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2020"><span class="toc-number">2.</span> <span class="toc-text">2020</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#去一次日本，全程只允许自己说日语；"><span class="toc-number">2.0.1.</span> <span class="toc-text">去一次日本，全程只允许自己说日语；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结识1个以上异性朋友，能一起为了看电影而去看电影的那种；"><span class="toc-number">2.0.2.</span> <span class="toc-text">结识1个以上异性朋友，能一起为了看电影而去看电影的那种；</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#做事情更“莽”一些，遵从内心最初的想法而不是思来想去得一个“看上去最优”的解；"><span class="toc-number">2.0.3.</span> <span class="toc-text">做事情更“莽”一些，遵从内心最初的想法而不是思来想去得一个“看上去最优”的解；</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 8
+        </div>
+        <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/31</span><a class="archive-post-title" href= "/posts/3590534990/" >2019年的总结&2020年的FLAG</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/posts/1648416303/" >机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/posts/1635273383/" >机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/posts/4293844555/" >机器学习(4)--支持向量机(Support Vector Machine)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/posts/1348010069/" >机器学习(3)--神经网络(Neural Network)及模型改进</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/posts/438233758/" >机器学习(2)--逻辑回归(Logistic Regression)及正则化(Normalization)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/posts/1805300341/" >机器学习(1)--单变量线性回归及多维特征情形</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/posts/1243066710/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="逻辑回归"><span class="iconfont-archer">&#xe606;</span>逻辑回归</span>
+    
+        <span class="sidebar-tag-name" data-tags="正则化"><span class="iconfont-archer">&#xe606;</span>正则化</span>
+    
+        <span class="sidebar-tag-name" data-tags="线性回归"><span class="iconfont-archer">&#xe606;</span>线性回归</span>
+    
+        <span class="sidebar-tag-name" data-tags="梯度下降"><span class="iconfont-archer">&#xe606;</span>梯度下降</span>
+    
+        <span class="sidebar-tag-name" data-tags="神经网络"><span class="iconfont-archer">&#xe606;</span>神经网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="模型改进"><span class="iconfont-archer">&#xe606;</span>模型改进</span>
+    
+        <span class="sidebar-tag-name" data-tags="支持向量机"><span class="iconfont-archer">&#xe606;</span>支持向量机</span>
+    
+        <span class="sidebar-tag-name" data-tags="无监督学习"><span class="iconfont-archer">&#xe606;</span>无监督学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="异常检测"><span class="iconfont-archer">&#xe606;</span>异常检测</span>
+    
+        <span class="sidebar-tag-name" data-tags="推荐系统"><span class="iconfont-archer">&#xe606;</span>推荐系统</span>
+    
+        <span class="sidebar-tag-name" data-tags="大规模机器学习"><span class="iconfont-archer">&#xe606;</span>大规模机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="随笔"><span class="iconfont-archer">&#xe60a;</span>随笔</span>
+    
+        <span class="sidebar-category-name" data-categories="AndrewNg《MachineLearning》笔记"><span class="iconfont-archer">&#xe60a;</span>AndrewNg《MachineLearning》笔记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "LiZhe"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
+
+
