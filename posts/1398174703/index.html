@@ -445,33 +445,33 @@ height:50vh;
 <h1 id="推送至远程仓库"><a href="#推送至远程仓库" class="headerlink" title="推送至远程仓库"></a>推送至远程仓库</h1><p>之前的操作都是针对本地仓库在git上进行的，现在开始学习GitHub上的远程仓库操作。</p>
 <h2 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h2><p>首先在GitHub网站上建立新的仓库，注意一般不勾选自动建立README.md的选项，防止本地仓库与远程仓库失去“整合性”（当然也可以后期强制覆盖，先pull一下就可以）。</p>
 <p>然后将该仓库设置成本地仓库的远程仓库：</p>
-<figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github.com:yourname&#x2F;yourrepositories.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github.com:yourname/yourrepositories.git</span><br></pre></td></tr></table></figure>
 <p>这一步完成后Git会自动将远程仓库的名字设置为origin。</p>
 <h2 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master --allow-unrelated-histories	<span class="comment">#如果远程仓库内有内容，先把他们pull下来和本地同步</span></span><br><span class="line">$ git push -u origin master         			<span class="comment">#将当前分支内容推送给远程仓库的origin的master分支</span></span><br></pre></td></tr></table></figure>
 <p>注意此处“-u”参数的作用在于，将origin仓库的master分支设置为本地当前分支的上游（upstream），这使得未来通过git pull从远程仓库获取内容时本地仓库的这个分支可以直接从origin-master获得内容。（只有第一次推送带参数-u，之后不用再带）</p>
 <p>本地master以外的分支推送也是同理：</p>
-<figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b feature-B         #切换到分支B</span><br><span class="line">$ git push -u origin feature-B      #推送分支B，即将本地的B分支推送到远程（origin）</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b feature-B         <span class="comment">#切换到分支B</span></span><br><span class="line">$ git push -u origin feature-B      <span class="comment">#推送分支B，即将本地的B分支推送到远程（origin）</span></span><br></pre></td></tr></table></figure>
 <h2 id="从远程仓库获取"><a href="#从远程仓库获取" class="headerlink" title="从远程仓库获取"></a>从远程仓库获取</h2><h3 id="获取远程仓库"><a href="#获取远程仓库" class="headerlink" title="获取远程仓库"></a>获取远程仓库</h3><p>首先<strong>切换到其他目录</strong>下，准备将GitHub上的仓库clone到本地：</p>
-<figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git@github.com:yourname&#x2F;yourrepositories.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:yourname/yourrepositories.git</span><br></pre></td></tr></table></figure>
 <p>运行后我出现了Enter passphrase for key ‘/c/Users/Shinelon/.ssh/id_rsa’:，直接输入密码继续。<br>（在其他目录下也要先git init建立仓库数据，否则这一步会报错！）</p>
 <p>完成后本地仓库的master分支与远程仓库的master分支完全相同。</p>
 <p>使用-a参数可以同时查看本地仓库和远程仓库的分支信息：</p>
-<figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch-a</span><br></pre></td></tr></table></figure>
-<h3 id="获取远程某分支"><a href="#获取远程某分支" class="headerlink" title="获取远程某分支"></a>获取远程某分支</h3><figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b feature-X origin&#x2F;feature-Y</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch<span class="_">-a</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取远程某分支"><a href="#获取远程某分支" class="headerlink" title="获取远程某分支"></a>获取远程某分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b feature-X origin/feature-Y</span><br></pre></td></tr></table></figure>
 <p>以远程仓库的分支Y为来源，在本地仓库中建立X分支。</p>
 <h2 id="向远程分支提交修改"><a href="#向远程分支提交修改" class="headerlink" title="向远程分支提交修改"></a>向远程分支提交修改</h2><p>一般情况下，如果要对自己/他人的远程分支提交修改，可以如下操作：</p>
-<figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b featrueX origin&#x2F;featureY          #从远程获取Y分支</span><br><span class="line">$ git diff                                          #在本地对X，即获取到的Y进行修改</span><br><span class="line">$ git commit -am &quot;xxx&quot;                              #加入暂存区并提交，&#x3D;add+commit</span><br><span class="line">$ git push                                          #将本地X分支推送到Y</span><br></pre></td></tr></table></figure>
-<h3 id="获取最新分支"><a href="#获取最新分支" class="headerlink" title="获取最新分支"></a>获取最新分支</h3><figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin featureY</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b featrueX origin/featureY          <span class="comment">#从远程获取Y分支</span></span><br><span class="line">$ git diff                                          <span class="comment">#在本地对X，即获取到的Y进行修改</span></span><br><span class="line">$ git commit -am <span class="string">"xxx"</span>                              <span class="comment">#加入暂存区并提交，=add+commit</span></span><br><span class="line">$ git push                                          <span class="comment">#将本地X分支推送到Y</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取最新分支"><a href="#获取最新分支" class="headerlink" title="获取最新分支"></a>获取最新分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin featureY</span><br></pre></td></tr></table></figure>
 <p>将本地的X通过Y更新到最新。</p>
 <h3 id="一些自问自答的小问题："><a href="#一些自问自答的小问题：" class="headerlink" title="一些自问自答的小问题："></a>一些自问自答的小问题：</h3><h4 id="1-在本地建立仓库直接新建文件夹，然后cd到目录下git-init即可；远程则是GitHub网页建立新仓库。通过git-clone命令能够将origin（远程）的仓库直接克隆到本地，而本地到origin的push命令却只能push某个分支的内容到远程？"><a href="#1-在本地建立仓库直接新建文件夹，然后cd到目录下git-init即可；远程则是GitHub网页建立新仓库。通过git-clone命令能够将origin（远程）的仓库直接克隆到本地，而本地到origin的push命令却只能push某个分支的内容到远程？" class="headerlink" title="1.在本地建立仓库直接新建文件夹，然后cd到目录下git init即可；远程则是GitHub网页建立新仓库。通过git clone命令能够将origin（远程）的仓库直接克隆到本地，而本地到origin的push命令却只能push某个分支的内容到远程？"></a>1.在本地建立仓库直接新建文件夹，然后cd到目录下git init即可；远程则是GitHub网页建立新仓库。通过git clone命令能够将origin（远程）的仓库直接克隆到本地，而本地到origin的push命令却只能push某个分支的内容到远程？</h4><p>答：确实是这样，要推送全部分支到origin的话需要使用</p>
-<figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -all origin                             #这样即是将本地所有分支都推送到了origin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -all origin                             <span class="comment">#这样即是将本地所有分支都推送到了origin</span></span><br></pre></td></tr></table></figure>
 <h4 id="2-练习时创建了大量分支，本地和远程都有，要如何删除？"><a href="#2-练习时创建了大量分支，本地和远程都有，要如何删除？" class="headerlink" title="2.练习时创建了大量分支，本地和远程都有，要如何删除？"></a>2.练习时创建了大量分支，本地和远程都有，要如何删除？</h4><p>答：</p>
-<figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d &lt;BranchName&gt;                       #删除了本地的BranchName分支</span><br><span class="line">$ git push origin :&lt;BranchName&gt;                    #将一个空分支推送至远程BranchName，效果等同与删除远程BranchName</span><br><span class="line">$ git push origin --delete &lt;BranchName&gt;            #真正的删除指令</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d &lt;BranchName&gt;                       <span class="comment">#删除了本地的BranchName分支</span></span><br><span class="line">$ git push origin :&lt;BranchName&gt;                    <span class="comment">#将一个空分支推送至远程BranchName，效果等同与删除远程BranchName</span></span><br><span class="line">$ git push origin --delete &lt;BranchName&gt;            <span class="comment">#真正的删除指令</span></span><br></pre></td></tr></table></figure>
 <h4 id="3-分支只能在本地之间切换吗？"><a href="#3-分支只能在本地之间切换吗？" class="headerlink" title="3.分支只能在本地之间切换吗？"></a>3.分支只能在本地之间切换吗？</h4><p>答：是这样，而且研究了一下我发现git branch和git checkout虽然在新建分支并切换的时候效果等同，但实际branch就是一个新建的命令，checkout才是切换至某分支的指令。</p>
 <p>更多简单的指令可以看看这个网址，感觉说的还比较详细：<a href="https://www.yiibai.com/git/git_push.html" target="_blank" rel="noopener">Git教程</a>。</p>
 <h4 id="4-今天在本地修改文件后同步到GitHub中，直接使用git-commit-am-‘说明’"><a href="#4-今天在本地修改文件后同步到GitHub中，直接使用git-commit-am-‘说明’" class="headerlink" title="4.今天在本地修改文件后同步到GitHub中，直接使用git commit -am ‘说明’"></a>4.今天在本地修改文件后同步到GitHub中，直接使用git commit -am ‘说明’</h4><p>进行提交，结果出现了一点小bug，部分GitHub中的文件夹丢失了。具体原因还不是很清楚。</p>
 <p>答：改用</p>
-<figure class="highlight plain"><figcaption><span>.input .Bash&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m &#39; &#39;</span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">' '</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure>
 <h1 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h1><p><strong>1.显示快捷键：</strong></p>
 <p>【Shift+/】</p>
 <p><strong>2.通过URL直接查看分支间的差别：</strong></p>
@@ -508,7 +508,7 @@ height:50vh;
             <p>原文作者：<a href="http://li-zhe.com">LiZhe</a>
             <p>原文链接：<a href="http://li-zhe.com/posts/1398174703/">http://li-zhe.com/posts/1398174703/</a>
             <p>发表日期：<a href="http://li-zhe.com/posts/1398174703/">October 6th 2019, 3:24:59 pm</a>
-            <p>更新日期：<a href="http://li-zhe.com/posts/1398174703/">January 6th 2020, 7:04:37 pm</a>
+            <p>更新日期：<a href="http://li-zhe.com/posts/1398174703/">January 6th 2020, 8:23:41 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0国际许可协议</a>进行许可，转载请注明出处。</p>
         </div>
     
@@ -548,7 +548,7 @@ height:50vh;
         verify:false, 
         appId: "gsJ3vSKSro7zcbM3biQU067a-gzGzoHsz",
         appKey: "FrMNhLRu1vMgo93sU7tMbJOi",
-        placeholder: "有什么想法/意见，评论一下？♪(´▽｀)[评论支持Markdown格式哦]",
+        placeholder: "有什么想法/意见，评论一下？♪(´▽｀)\n[评论支持Markdown格式哦]",
         path:window.location.pathname, 
         avatar:'mm' 
     });
@@ -755,30 +755,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 10
@@ -836,7 +812,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/posts/1243066710/" >Hello World</a>
+            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/posts/1/" >Hello World</a>
         </li>
     
     
