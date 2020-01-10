@@ -17,7 +17,7 @@
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="LiZhe">
     
-    <meta name="keywords" content="blog,生物学,bioinformatics">
+    <meta name="keywords" content="blog,生物信息学,bioinformatics">
     
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
@@ -753,7 +753,7 @@
     <div class="busuanzi-container">
     
     
-    <span id="busuanzi_container_site_uv">Visitors: <span id="busuanzi_value_site_uv"></span> XD</span>
+    <span id="busuanzi_container_site_uv">到访人数: <span id="busuanzi_value_site_uv"></span> XD</span>
     
     </div>
     
@@ -1057,7 +1057,22 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 
