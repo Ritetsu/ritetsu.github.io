@@ -17,7 +17,7 @@
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="LiZhe">
     
-    <meta name="keywords" content="blog,生物信息学,bioinformatics">
+    <meta name="keywords" content="blog,biology,bioinformatics">
     
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
@@ -198,7 +198,7 @@
         <script>
             
             var hits = JSON.parse('{"per_page":10}')
-            var labels = JSON.parse('{"input_placeholder":"搜!","hits_empty":"抱歉，没能找到关于 ${query} 的内容Qrz...","hits_stats":"${hits} 个结果"}')
+            var labels = JSON.parse('{"input_placeholder":"搜!","hits_empty":"抱歉，没能找到关于 ${query} 的内容...","hits_stats":"${hits} 个结果"}')
 
             var algolia = {
                 applicationID: 'H5DJ2SWD7G',
@@ -230,14 +230,14 @@
     
     <div class="banner">
             <div class="blog-title">
-                <a href="/" >LiZhe&#39;s Virtual Part</a>
+                <a href="/" >LiZhe&#39;s Virtual</a>
             </div>
             <div class="post-title">
                 <a href="#" class="post-name">机器学习(1)--单变量线性回归及多维特征情形</a>
             </div>
     </div>
     
-    <a class="home-link" href=/>LiZhe's Virtual Part</a>
+    <a class="home-link" href=/>LiZhe's Virtual</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -292,7 +292,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">960</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">921</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -443,8 +443,7 @@ height:50vh;
 <h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><h4 id="特征放缩"><a href="#特征放缩" class="headerlink" title="特征放缩"></a>特征放缩</h4><p>当两个特征值范围差的很远，如0-5和0-2000时，代价函数的等高线图能看出图像很扁，梯度下降也需要非常多次迭代才能收敛，方法是尝试将所有特征的尺度都缩放到-1到1之间：</p>
 <script type="math/tex; mode=display">x_n=\cfrac{x_n-\mu_n}{s_n}</script><p>(平均值$\mu_n$，标准差$s_n$)</p>
 <h4 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h4><p>梯度下降算法的迭代受到学习率alpha的影响，如果学习率过小，则达到收敛所需的迭代次数会非常高；如过大，则每次迭代可能不会减小代价函数，越过局部最小值而导致无法收敛。<br>建议的学习率：</p>
-<script type="math/tex; mode=display">\alpha=0.01,0.03,0.1,0.3,1,3,10</script><p>(P.S.文中偶尔出现代码使用的是Python3，因为是用JupyterNotebook写的笔记，所以顺手可以跑点Python代码测试一下😁)</p>
-
+<script type="math/tex; mode=display">\alpha=0.01,0.03,0.1,0.3,1,3,10</script>
     </article>
     <!-- license  -->
     
@@ -452,7 +451,7 @@ height:50vh;
             <p>原文作者：<a href="http://li-zhe.com">LiZhe</a>
             <p>原文链接：<a href="http://li-zhe.com/posts/1805300341/">http://li-zhe.com/posts/1805300341/</a>
             <p>发表日期：<a href="http://li-zhe.com/posts/1805300341/">December 16th 2019, 9:44:34 am</a>
-            <p>更新日期：<a href="http://li-zhe.com/posts/1805300341/">January 2nd 2020, 9:12:54 am</a>
+            <p>更新日期：<a href="http://li-zhe.com/posts/1805300341/">July 23rd 2020, 9:40:07 am</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0国际许可协议</a>进行许可，转载请注明出处。</p>
         </div>
     
@@ -497,7 +496,7 @@ height:50vh;
         verify:false, 
         appId: "gsJ3vSKSro7zcbM3biQU067a-gzGzoHsz",
         appKey: "FrMNhLRu1vMgo93sU7tMbJOi",
-        placeholder: "有什么想法/意见，评论一下？♪(´▽｀)\n[👇评论支持Markdown格式哦]",
+        placeholder: "👇评论支持Markdown格式",
         path:window.location.pathname, 
         avatar:'mm' 
     });
@@ -755,6 +754,8 @@ top:50vh;
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 13
@@ -777,12 +778,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/posts/20200422/" >笑话两则</a>
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href= "/posts/20200422/" >模仿苏联笑话两则</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200302/" >IGV在Linux服务器上的使用</a>
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200302/" >在家里也能用的IGV</a>
         </li>
     
     

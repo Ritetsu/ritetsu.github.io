@@ -17,12 +17,12 @@
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="LiZhe">
     
-    <meta name="keywords" content="blog,生物信息学,bioinformatics">
+    <meta name="keywords" content="blog,biology,bioinformatics">
     
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>IGV在Linux服务器上的使用 · LiZhe&#39;s Virtual Part</title>
+    <title>在家里也能用的IGV · LiZhe&#39;s Virtual Part</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -198,7 +198,7 @@
         <script>
             
             var hits = JSON.parse('{"per_page":10}')
-            var labels = JSON.parse('{"input_placeholder":"搜!","hits_empty":"抱歉，没能找到关于 ${query} 的内容Qrz...","hits_stats":"${hits} 个结果"}')
+            var labels = JSON.parse('{"input_placeholder":"搜!","hits_empty":"抱歉，没能找到关于 ${query} 的内容...","hits_stats":"${hits} 个结果"}')
 
             var algolia = {
                 applicationID: 'H5DJ2SWD7G',
@@ -230,14 +230,14 @@
     
     <div class="banner">
             <div class="blog-title">
-                <a href="/" >LiZhe&#39;s Virtual Part</a>
+                <a href="/" >LiZhe&#39;s Virtual</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">IGV在Linux服务器上的使用</a>
+                <a href="#" class="post-name">在家里也能用的IGV</a>
             </div>
     </div>
     
-    <a class="home-link" href=/>LiZhe's Virtual Part</a>
+    <a class="home-link" href=/>LiZhe's Virtual</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -263,7 +263,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            IGV在Linux服务器上的使用
+            在家里也能用的IGV
             <!-- 404 -->
             
         </h1>
@@ -427,7 +427,7 @@ height:50vh;
 <h1 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1.前期准备"></a>1.前期准备</h1><h2 id="1-1-下载Linux版本的IGV"><a href="#1-1-下载Linux版本的IGV" class="headerlink" title="1.1 下载Linux版本的IGV"></a>1.1 下载Linux版本的IGV</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://data.broadinstitute.org/igv/projects/downloads/2.8/IGV_Linux_2.8.0.zip</span><br><span class="line">unzip IGV_Linux_2.8.0.zip</span><br><span class="line"><span class="built_in">cd</span> IGV_Linux_2.8.0        </span><br><span class="line">cat readme.txt      <span class="comment">#确认所需环境（目前版本需要Java11）</span></span><br></pre></td></tr></table></figure>
 <h2 id="1-2-配置Java11运行环境"><a href="#1-2-配置Java11运行环境" class="headerlink" title="1.2 配置Java11运行环境"></a>1.2 配置Java11运行环境</h2><h3 id="root用户"><a href="#root用户" class="headerlink" title="root用户"></a>root用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum search java-11-openjdk              <span class="comment">#找到对应的development版本</span></span><br><span class="line">yum install java-11-openjdk-devel.x86_64</span><br><span class="line">java -version                           <span class="comment">#测试</span></span><br></pre></td></tr></table></figure>
 <h3 id="普通用户"><a href="#普通用户" class="headerlink" title="普通用户"></a>普通用户</h3><p>前往官网/其他地址下载安装包：<br><a href="https://openjdk.java.net/install/index.html" target="_blank" rel="noopener">https://openjdk.java.net/install/index.html</a></p>
-<p><a href="https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz" target="_blank" rel="noopener">https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz</span><br><span class="line">tar -zxvf openjdk-11+28_linux-x64_bin.tar.gz</span><br><span class="line">vi ~/.bash_profile</span><br><span class="line"><span class="comment">#填入如下内容(自行修改JAVA所在路径)</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/picb/lilab3/lizhe/jdk-11</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz" target="_blank" rel="noopener">https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz</span><br><span class="line">tar -zxvf openjdk-11+28_linux-x64_bin.tar.gz</span><br><span class="line">vi ~/.bash_profile</span><br><span class="line"><span class="comment">#填入如下内容(自行修改JAVA所在路径)</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/your_path/jdk-11</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure></p>
 <h2 id="1-3-启用服务器X11转发"><a href="#1-3-启用服务器X11转发" class="headerlink" title="1.3 启用服务器X11转发"></a>1.3 启用服务器X11转发</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
 <p>修改以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#AllowAgentForwarding yes</span><br><span class="line">AllowTcpForwarding yes</span><br><span class="line">#GatewayPorts no</span><br><span class="line">X11Forwarding yes</span><br><span class="line">X11DisplayOffset 10</span><br><span class="line">X11UseLocalhost no   #这里可以保持默认不修改</span><br><span class="line">#PermitTTY yes</span><br><span class="line">#PrintMotd yes</span><br><span class="line">#PrintLastLog yes</span><br><span class="line">#TCPKeepAlive yes</span><br></pre></td></tr></table></figure><br>安装X11组件包及字库：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y xorg-x11-xauth           <span class="comment">#安装x11组件包        </span></span><br><span class="line">yum install -y wqy-zenhei-fonts*        <span class="comment">#安装中文字库</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="2-运行IGV"><a href="#2-运行IGV" class="headerlink" title="2.运行IGV"></a>2.运行IGV</h1><h2 id="2-1-使用Xshell6-Xmanager6"><a href="#2-1-使用Xshell6-Xmanager6" class="headerlink" title="2.1 使用Xshell6+Xmanager6"></a>2.1 使用Xshell6+Xmanager6</h2><p>①下载Xshell及Xmanager，在Xshell中更改设置：</p>
@@ -437,7 +437,7 @@ height:50vh;
 <p>②下载PuTTY，更改设置：</p>
 <p>Connection → SSH → X11 → 勾选Enable X11 forwarding；</p>
 <p>同上，正常连接使用。</p>
-<h2 id="2-3-使用MobaXterm"><a href="#2-3-使用MobaXterm" class="headerlink" title="2.3 使用MobaXterm"></a>2.3 使用MobaXterm</h2><p>①下载MobaXterm；</p>
+<h2 id="2-3-使用MobaXterm-推荐"><a href="#2-3-使用MobaXterm-推荐" class="headerlink" title="2.3 使用MobaXterm(推荐)"></a>2.3 使用MobaXterm(推荐)</h2><p>①下载MobaXterm；</p>
 <p>②同上，正常连接使用。</p>
 
     </article>
@@ -447,7 +447,7 @@ height:50vh;
             <p>原文作者：<a href="http://li-zhe.com">LiZhe</a>
             <p>原文链接：<a href="http://li-zhe.com/posts/20200302/">http://li-zhe.com/posts/20200302/</a>
             <p>发表日期：<a href="http://li-zhe.com/posts/20200302/">March 1st 2020, 11:59:59 pm</a>
-            <p>更新日期：<a href="http://li-zhe.com/posts/20200302/">April 21st 2020, 9:33:43 am</a>
+            <p>更新日期：<a href="http://li-zhe.com/posts/20200302/">July 24th 2020, 8:12:31 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0国际许可协议</a>进行许可，转载请注明出处。</p>
         </div>
     
@@ -456,8 +456,8 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/posts/20200422/" title= "笑话两则">
-                    <div class="nextTitle">笑话两则</div>
+                <a href= "/posts/20200422/" title= "模仿苏联笑话两则">
+                    <div class="nextTitle">模仿苏联笑话两则</div>
                 </a>
             
         </li>
@@ -492,7 +492,7 @@ height:50vh;
         verify:false, 
         appId: "gsJ3vSKSro7zcbM3biQU067a-gzGzoHsz",
         appKey: "FrMNhLRu1vMgo93sU7tMbJOi",
-        placeholder: "有什么想法/意见，评论一下？♪(´▽｀)\n[👇评论支持Markdown格式哦]",
+        placeholder: "👇评论支持Markdown格式",
         path:window.location.pathname, 
         avatar:'mm' 
     });
@@ -610,7 +610,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1.前期准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-下载Linux版本的IGV"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 下载Linux版本的IGV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-配置Java11运行环境"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 配置Java11运行环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#root用户"><span class="toc-number">1.2.1.</span> <span class="toc-text">root用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#普通用户"><span class="toc-number">1.2.2.</span> <span class="toc-text">普通用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-启用服务器X11转发"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 启用服务器X11转发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-运行IGV"><span class="toc-number">2.</span> <span class="toc-text">2.运行IGV</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-使用Xshell6-Xmanager6"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 使用Xshell6+Xmanager6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-使用PuTTY-Xming"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 使用PuTTY+Xming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-使用MobaXterm"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 使用MobaXterm</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1.前期准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-下载Linux版本的IGV"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 下载Linux版本的IGV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-配置Java11运行环境"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 配置Java11运行环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#root用户"><span class="toc-number">1.2.1.</span> <span class="toc-text">root用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#普通用户"><span class="toc-number">1.2.2.</span> <span class="toc-text">普通用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-启用服务器X11转发"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 启用服务器X11转发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-运行IGV"><span class="toc-number">2.</span> <span class="toc-text">2.运行IGV</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-使用Xshell6-Xmanager6"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 使用Xshell6+Xmanager6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-使用PuTTY-Xming"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 使用PuTTY+Xming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-使用MobaXterm-推荐"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 使用MobaXterm(推荐)</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -623,6 +623,8 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -772,12 +774,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/posts/20200422/" >笑话两则</a>
+            <span class="archive-post-date">04/22</span><a class="archive-post-title" href= "/posts/20200422/" >模仿苏联笑话两则</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200302/" >IGV在Linux服务器上的使用</a>
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200302/" >在家里也能用的IGV</a>
         </li>
     
     
