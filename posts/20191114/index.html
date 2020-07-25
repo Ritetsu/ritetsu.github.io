@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>可能是建立网站的初衷 · ILLEGAL ARGUMENTS</title>
+    <title>可能是建立网站的初衷 · INITIALISATION</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -230,14 +230,14 @@
     
     <div class="banner">
             <div class="blog-title">
-                <a href="/" >ILLEGAL ARGUMENTS</a>
+                <a href="/" >INITIALISATION</a>
             </div>
             <div class="post-title">
                 <a href="#" class="post-name">可能是建立网站的初衷</a>
             </div>
     </div>
     
-    <a class="home-link" href=/>ILLEGAL ARGUMENTS</a>
+    <a class="home-link" href=/>INITIALISATION</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -988,7 +988,22 @@ jsonContent:
     
         <script src="/scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 
