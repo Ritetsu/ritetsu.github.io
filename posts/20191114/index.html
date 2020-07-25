@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>在家里也能用的IGV · ILLEGAL ARGUMENTS</title>
+    <title>随笔-可能是建立个人网站的初衷 · ILLEGAL ARGUMENTS</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -233,7 +233,7 @@
                 <a href="/" >ILLEGAL ARGUMENTS</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">在家里也能用的IGV</a>
+                <a href="#" class="post-name">随笔-可能是建立个人网站的初衷</a>
             </div>
     </div>
     
@@ -257,13 +257,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/430.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            在家里也能用的IGV
+            随笔-可能是建立个人网站的初衷
             <!-- 404 -->
             
         </h1>
@@ -280,24 +280,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "笔记">笔记</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "IGV">IGV</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Linux">Linux</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">402</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/03/01</span>
+                    <span class="post-intro-time">2019/11/14</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -422,32 +412,40 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <blockquote>
-<p>注：我测试时的环境是 <strong>未安装其他版本的Java和X11组件的服务器</strong>，其他情况请按需修改对应步骤。</p>
+<p>我建立的第一个网站www.justmonika.xyz在2020年1月11日正式关闭了。<br>以下文字由其历史内容整合而成，主要是面临放弃旧站时，对是否要继续写新网站的思考，原文标题为《会半途而废吗？》。<br>“注”的内容是后来添加的<del>吐槽自己还是拿手啊</del>。</p>
 </blockquote>
-<h1 id="1-前期准备"><a href="#1-前期准备" class="headerlink" title="1.前期准备"></a>1.前期准备</h1><h2 id="1-1-下载Linux版本的IGV"><a href="#1-1-下载Linux版本的IGV" class="headerlink" title="1.1 下载Linux版本的IGV"></a>1.1 下载Linux版本的IGV</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://data.broadinstitute.org/igv/projects/downloads/2.8/IGV_Linux_2.8.0.zip</span><br><span class="line">unzip IGV_Linux_2.8.0.zip</span><br><span class="line"><span class="built_in">cd</span> IGV_Linux_2.8.0        </span><br><span class="line">cat readme.txt      <span class="comment">#确认所需环境（目前版本需要Java11）</span></span><br></pre></td></tr></table></figure>
-<h2 id="1-2-配置Java11运行环境"><a href="#1-2-配置Java11运行环境" class="headerlink" title="1.2 配置Java11运行环境"></a>1.2 配置Java11运行环境</h2><h3 id="root用户"><a href="#root用户" class="headerlink" title="root用户"></a>root用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum search java-11-openjdk              <span class="comment">#找到对应的development版本</span></span><br><span class="line">yum install java-11-openjdk-devel.x86_64</span><br><span class="line">java -version                           <span class="comment">#测试</span></span><br></pre></td></tr></table></figure>
-<h3 id="普通用户"><a href="#普通用户" class="headerlink" title="普通用户"></a>普通用户</h3><p>前往官网/其他地址下载安装包：<br><a href="https://openjdk.java.net/install/index.html" target="_blank" rel="noopener">https://openjdk.java.net/install/index.html</a></p>
-<p><a href="https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz" target="_blank" rel="noopener">https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz</span><br><span class="line">tar -zxvf openjdk-11+28_linux-x64_bin.tar.gz</span><br><span class="line">vi ~/.bash_profile</span><br><span class="line"><span class="comment">#填入如下内容(自行修改JAVA所在路径)</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/your_path/jdk-11</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure></p>
-<h2 id="1-3-启用服务器X11转发"><a href="#1-3-启用服务器X11转发" class="headerlink" title="1.3 启用服务器X11转发"></a>1.3 启用服务器X11转发</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
-<p>修改以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#AllowAgentForwarding yes</span><br><span class="line">AllowTcpForwarding yes</span><br><span class="line">#GatewayPorts no</span><br><span class="line">X11Forwarding yes</span><br><span class="line">X11DisplayOffset 10</span><br><span class="line">X11UseLocalhost no   #这里可以保持默认不修改</span><br><span class="line">#PermitTTY yes</span><br><span class="line">#PrintMotd yes</span><br><span class="line">#PrintLastLog yes</span><br><span class="line">#TCPKeepAlive yes</span><br></pre></td></tr></table></figure><br>安装X11组件包及字库：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y xorg-x11-xauth           <span class="comment">#安装x11组件包        </span></span><br><span class="line">yum install -y wqy-zenhei-fonts*        <span class="comment">#安装中文字库</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="2-运行IGV"><a href="#2-运行IGV" class="headerlink" title="2.运行IGV"></a>2.运行IGV</h1><h2 id="2-1-使用Xshell6-Xmanager6"><a href="#2-1-使用Xshell6-Xmanager6" class="headerlink" title="2.1 使用Xshell6+Xmanager6"></a>2.1 使用Xshell6+Xmanager6</h2><p>①下载Xshell及Xmanager，在Xshell中更改设置：</p>
-<p>连接→SSH→隧道→ 勾选 转发X11连接到Xmanager；</p>
-<p>②打开Xmanager，通过Xshell正常连接，进入IGV文件夹内：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh igv.sh</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-2-使用PuTTY-Xming"><a href="#2-2-使用PuTTY-Xming" class="headerlink" title="2.2 使用PuTTY+Xming"></a>2.2 使用PuTTY+Xming</h2><p>①下载Xming并打开（不需要设置）；</p>
-<p>②下载PuTTY，更改设置：</p>
-<p>Connection → SSH → X11 → 勾选Enable X11 forwarding；</p>
-<p>同上，正常连接使用。</p>
-<h2 id="2-3-使用MobaXterm-推荐"><a href="#2-3-使用MobaXterm-推荐" class="headerlink" title="2.3 使用MobaXterm(推荐)"></a>2.3 使用MobaXterm(推荐)</h2><p>①下载MobaXterm；</p>
-<p>②同上，正常连接使用。</p>
+<h1 id="可能是建立个人网站的初衷"><a href="#可能是建立个人网站的初衷" class="headerlink" title="可能是建立个人网站的初衷"></a>可能是建立个人网站的初衷</h1><p>时隔上一次更新已经过去了快一个月，起初建站没有明确的目标，只是想熟悉一下整个流程，多鼓捣鼓捣Linux。建成之始还是很有成就感，待到公安备案完成，一切尘埃落定，突然发觉不需要再做什么，顿感迷茫。</p>
+<p>思考了几天后意图把这个网站作为自己输出的平台，分享一些日常和学习经验。</p>
+<p>然而域名已经给百度检索提交了几个礼拜，还是很难检索到内容。我又没脸往朋友圈推广自己的网站，也不是什么勤勉的高质量日更博主能吸引来路人，恐怕阅读量会持续维持在0-1之间。</p>
+<p>为了测试，我写过一篇简短的博文，分别发在了CSDN/博客园等等的不同的平台，得到的反馈明显比自己瞎建的网站要好。可惜商业博客虽方便，能自定义的东西却太少，广告又太多，并不适合我。</p>
+<p>近段时间顺着网上各种资源找了不少做生信的大佬们的网站，虽然不至于像以前那样只能在心里默念牛逼了，但还是不得不感慨别人的细节和精致<sup>注1</sup>。这或许也是我继续建站的动力之一吧？</p>
+<p>（注1：后来也发现不少做得丑丑水水的，模板使用之敷衍令人痛心疾首，不提）</p>
+<p>这么一反思，我突然发现我的域名<sup>注2</sup>如此拗口、页面毫无新意、功能不见特色，简直一无是处。再仔细一想，平常我可以在微博倒垃圾，在朋友圈发心情，在知乎答问题；学习笔记自己记完了往大象一传就完事，我似乎没什么非写在博客里不可的东西。</p>
+<p>（注2：当时的域名justmonika出自游戏《Doki Doki Literature Club!》，中文译名《心动文学社》。作为我玩的第一部Galgame也是迄今玩过最棒的Galgame，我在此向所有没有心脏疾病的玩家推荐它！毕竟也有人说这是恋爱模拟做得最好的恐怖游戏<del>（笑）</del>尤其是2周目、3周目的剧情令人心动不已，完美点题Doki Doki！不过好玩的前提的你<strong>不被剧透</strong>。）</p>
+<p><strong>那么，是不是可以放弃这个网站了呢？</strong></p>
+<p>不可以的，我最恨自己做事情半途而废了。</p>
+<p>但这不是主要原因。</p>
+<p>我想，主要原因是我期待一个真实地、不加修饰地表达自己的地方。不知道什么时候起我很少发朋友圈/空间了，甚至QQ空间已经在Tim里关闭很久没有打开过了，总觉得被动接收自己不感兴趣的信息<sup>注3</sup>是一种负担。</p>
+<p>（注3：我知道有的人只是单纯地分享自己的生活，但也有些朋友喜欢把熬夜写（莫名其妙的）材料当成鸡汤给自己灌还每天都要发，我是真的不想看）</p>
+<p>往外输出也是一样，一旦我发送出去了，就意味着所有好友都能看到。也许有人会出于关心或者只是好奇想知道：我脱单了吗？保研去了哪里？做什么方向？但显然并不是每个人都想知道我“今天早上吃了什么？为什么要建网站呢？又有什么感想？”，所以我在写朋友圈/空间的时候总是会思考，该写吗，写什么，父母看到会怎么想，老师呢，会因为吐槽被不明真相的朋友对号入座产生误解吗，等等外校老师看到了可能不太好要拉个分组……<br>太累了。</p>
+<p>这不真情实感，而是在给朋友圈的各位塑造自己的形象<sup>注4</sup>，和不少人往朋友圈发自拍一定要P得漂漂亮亮，拍了风景/美食要选图调色，加上地点tag大声宣布：“我在xx旅游/吃饭了！”一个道理。合情合理，不过我有些疲于应对。结果就是我很少发表主观的观点，大多是随口吐槽一下日常生活。</p>
+<p>（注4：或许这就是朋友圈存在的意义之一）</p>
+<p>所有带有“好友”、“关注”属性的社交app，网站于我而言都有这个毛病，我不希望看到不感兴趣的动态，更不希望不想看到我的动态的人被迫看着我的动态<sup>注5</sup>。</p>
+<p>（注5：近来微博好友也变多了，有不想看我话痨的朋友请务必随意取关我，我绝无任何怨言，也绝不会对我们的关系产生任何影响。千万不要“出于礼貌”关注着我，却其实并不想看我发微博。）</p>
+<p>网站的话，似乎解决了不少问题。想看的可以自己主动点进来看或者写评论，我也不知道是谁在看、谁在评论，自然也不用考虑观众们的感受。看完了就可以走，没兴趣直接右上角。于我而言希望每个人都有个人主页，这样我就可以选择性订阅想看的人，偶尔看看许久未见的人，一次性直接看完最近的所有事情，之后或许可以找些感兴趣的话题私聊叙旧一会儿，或许好奇心得到满足也就离开。</p>
+<p>偏题了。</p>
+<p>回答一下自己的问题：不会半途而废。</p>
+<p>相反我希望做得更好，也许是更好的网站，也许会尝试一下做视频（B站老会员了，可惜至今没传过视频……）？总之有一块属于自己的地方很舒坦，没有阴阳怪气冷嘲热讽<sup>注6</sup>，不用担心被熟人看见留下不好的印象；不用担心被误解导致关系僵硬。<del>更不用怕万一被有好感的女生看见了心想”原来他是这样的人！”</del></p>
+<p>（注6：也许未来会有，甚至有点期待）</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://li-zhe.com">LiZhe</a>
-            <p>原文链接：<a href="http://li-zhe.com/posts/20200302/">http://li-zhe.com/posts/20200302/</a>
-            <p>发表日期：<a href="http://li-zhe.com/posts/20200302/">March 1st 2020, 11:59:59 pm</a>
-            <p>更新日期：<a href="http://li-zhe.com/posts/20200302/">July 24th 2020, 8:12:31 pm</a>
+            <p>原文链接：<a href="http://li-zhe.com/posts/20191114/">http://li-zhe.com/posts/20191114/</a>
+            <p>发表日期：<a href="http://li-zhe.com/posts/20191114/">November 14th 2019, 3:24:59 pm</a>
+            <p>更新日期：<a href="http://li-zhe.com/posts/20191114/">July 25th 2020, 9:21:23 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0国际许可协议</a>进行许可，转载请注明出处。</p>
         </div>
     
@@ -456,16 +454,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/posts/20200422/" title= "模仿苏联笑话两则">
-                    <div class="nextTitle">模仿苏联笑话两则</div>
+                <a href= "/posts/1/" title= "Hello World">
+                    <div class="nextTitle">Hello World</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/posts/2539078927/" title= "《阿房宫赋》">
-                    <div class="prevTitle">《阿房宫赋》</div>
+                <a href= "/posts/20191006/" title= "笔记-Github新手入门指南">
+                    <div class="prevTitle">笔记-Github新手入门指南</div>
                 </a>
             
         </li>
@@ -610,7 +608,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-前期准备"><span class="toc-number">1.</span> <span class="toc-text">1.前期准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-下载Linux版本的IGV"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 下载Linux版本的IGV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-配置Java11运行环境"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 配置Java11运行环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#root用户"><span class="toc-number">1.2.1.</span> <span class="toc-text">root用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#普通用户"><span class="toc-number">1.2.2.</span> <span class="toc-text">普通用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-启用服务器X11转发"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 启用服务器X11转发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-运行IGV"><span class="toc-number">2.</span> <span class="toc-text">2.运行IGV</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-使用Xshell6-Xmanager6"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 使用Xshell6+Xmanager6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-使用PuTTY-Xming"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 使用PuTTY+Xming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-使用MobaXterm-推荐"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 使用MobaXterm(推荐)</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#可能是建立个人网站的初衷"><span class="toc-number">1.</span> <span class="toc-text">可能是建立个人网站的初衷</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -623,6 +621,22 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -779,12 +793,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200302/" >在家里也能用的IGV</a>
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200301/" >笔记-在家里也能用的基因组浏览器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/09</span><a class="archive-post-title" href= "/posts/2539078927/" >《阿房宫赋》</a>
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href= "/posts/20200209/" >《阿房宫赋》</a>
         </li>
     
     
@@ -798,37 +812,37 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/31</span><a class="archive-post-title" href= "/posts/20192020/" >2019年的总结&2020年的FLAG</a>
+            <span class="archive-post-date">12/31</span><a class="archive-post-title" href= "/posts/20191231/" >总结-2019年的结束&2020年的开始</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/posts/1648416303/" >机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习</a>
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/posts/20191221/" >笔记-机器学习(6)推荐系统(Recommender Systems)及大规模机器学习</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/posts/1635273383/" >机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</a>
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/posts/20191220/" >笔记-机器学习(5)无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/posts/4293844555/" >机器学习(4)--支持向量机(Support Vector Machine)</a>
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/posts/20191219/" >笔记-机器学习(4)支持向量机(Support Vector Machine)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/posts/1348010069/" >机器学习(3)--神经网络(Neural Network)及模型改进</a>
+            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/posts/20191218/" >笔记-机器学习(3)神经网络(Neural Network)及模型改进</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/posts/438233758/" >机器学习(2)--逻辑回归(Logistic Regression)及正则化(Normalization)</a>
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/posts/20191217/" >笔记-机器学习(2)逻辑回归(Logistic Regression)及正则化(Normalization)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/posts/1805300341/" >机器学习(1)--单变量线性回归及多维特征情形</a>
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/posts/20191216/" >笔记-机器学习(1)单变量线性回归及多维特征情形</a>
         </li>
     
     
@@ -838,12 +852,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/14</span><a class="archive-post-title" href= "/posts/1665412645/" >可能是建立个人网站的初衷</a>
+            <span class="archive-post-date">11/14</span><a class="archive-post-title" href= "/posts/20191114/" >随笔-可能是建立个人网站的初衷</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/posts/1398174703/" >Github新手入门指南</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/posts/20191006/" >笔记-Github新手入门指南</a>
         </li>
     
     </div>
@@ -875,19 +889,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="大规模机器学习"><span class="iconfont-archer">&#xe606;</span>大规模机器学习</span>
     
-        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
-    
-        <span class="sidebar-tag-name" data-tags="日常"><span class="iconfont-archer">&#xe606;</span>日常</span>
-    
         <span class="sidebar-tag-name" data-tags="Github"><span class="iconfont-archer">&#xe606;</span>Github</span>
     
-        <span class="sidebar-tag-name" data-tags="笔记"><span class="iconfont-archer">&#xe606;</span>笔记</span>
-    
-        <span class="sidebar-tag-name" data-tags="新手入门"><span class="iconfont-archer">&#xe606;</span>新手入门</span>
-    
-        <span class="sidebar-tag-name" data-tags="IGV"><span class="iconfont-archer">&#xe606;</span>IGV</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="时事评论"><span class="iconfont-archer">&#xe606;</span>时事评论</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -924,13 +930,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="随笔"><span class="iconfont-archer">&#xe60a;</span>随笔</span>
     
-        <span class="sidebar-category-name" data-categories="AndrewNg《MachineLearning》笔记"><span class="iconfont-archer">&#xe60a;</span>AndrewNg《MachineLearning》笔记</span>
-    
-        <span class="sidebar-category-name" data-categories="Git相关"><span class="iconfont-archer">&#xe60a;</span>Git相关</span>
-    
-        <span class="sidebar-category-name" data-categories="软件工具"><span class="iconfont-archer">&#xe60a;</span>软件工具</span>
-    
         <span class="sidebar-category-name" data-categories="时段总结"><span class="iconfont-archer">&#xe60a;</span>时段总结</span>
+    
+        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

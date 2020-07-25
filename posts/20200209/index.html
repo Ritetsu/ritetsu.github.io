@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>机器学习(4)--支持向量机(Support Vector Machine) · ILLEGAL ARGUMENTS</title>
+    <title>《阿房宫赋》 · ILLEGAL ARGUMENTS</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -233,7 +233,7 @@
                 <a href="/" >ILLEGAL ARGUMENTS</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">机器学习(4)--支持向量机(Support Vector Machine)</a>
+                <a href="#" class="post-name">《阿房宫赋》</a>
             </div>
     </div>
     
@@ -257,13 +257,13 @@ height:50vh;
     <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/430.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            机器学习(4)--支持向量机(Support Vector Machine)
+            《阿房宫赋》
             <!-- 404 -->
             
         </h1>
@@ -282,20 +282,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "机器学习">机器学习</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "支持向量机">支持向量机</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "时事评论">时事评论</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">653</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">932</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/12/19</span>
+                    <span class="post-intro-time">2020/02/09</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -420,41 +418,26 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <blockquote>
-<p>本文为吴恩达《机器学习》课程学习笔记的第4篇；<br>视频/作业/PPT等资源可在<a href="https://zh.coursera.org/learn/machine-learning" target="_blank" rel="noopener">Coursera</a>和<a href="https://study.163.com/course/courseLearn.htm?courseId=1004570029#/learn/video?lessonId=1049052745&amp;courseId=1004570029" target="_blank" rel="noopener">网易云课堂</a>等处找到；<br>其余篇章可见左侧Cate里的“Andrew Ng《Machine Learning》笔记”。</p>
+<p>2020年的开年是如此不平凡。闲在家里回忆了不少往事，监督妹妹背书的时候突然想起来自己以前背过的诗词古文，一句两句地这么一背，居然一字不差。</p>
 </blockquote>
-<h2 id="支持向量机-SVM"><a href="#支持向量机-SVM" class="headerlink" title="支持向量机(SVM)"></a>支持向量机(SVM)</h2><h3 id="从逻辑回归开始"><a href="#从逻辑回归开始" class="headerlink" title="从逻辑回归开始"></a>从逻辑回归开始</h3><p>逻辑回归的假设：</p>
-<script type="math/tex; mode=display">h_\theta(x)=\cfrac{1}{1+e^{-\theta^Tx}}</script><p>若y=1，我们希望$h_\theta(x)\approx1$，$\theta^Tx\gg0$</p>
-<p>若y=0，则$h_\theta(x)\approx0$，$\theta^Tx\ll0$（注意考虑S型的函数）</p>
-<p>考虑到代价函数：</p>
-<script type="math/tex; mode=display">J(\theta)=-\cfrac{1}{m}\sum_{i=1}^m[y^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})log(1-h_\theta(x^{(i)}))]</script><p>y=0或y=1时代价函数会消掉一部分，导致$\theta^Tx$极大或极小能确保代价函数趋于0。</p>
-<p>据此构建支持向量机：</p>
-<script type="math/tex; mode=display">\underbrace{min}_{\theta}C\sum^{m}_{i=1}[y^{(i)}cost_1(\theta^Tx^{(i)}+(1-y^{(i)})cost_0(\theta^Tx^{(i)})]+\cfrac{1}{2}\sum_{j=1}^{n}\theta_j^2</script><p>此处的C，相当于之前的$\cfrac{1}{\lambda}$，因此：</p>
-<p>C较大时，相当于$\lambda$较小，可能导致过拟合，高方差；</p>
-<p>C较小时，相当于$\lambda$较大，可能导致低拟合，高偏差。</p>
-<p>向量u的范数=$\sqrt{u_1^2+u_2^2}$，代表u的欧几里得长度。</p>
-<p>通过向量内积：</p>
-<script type="math/tex; mode=display">\vec u^T\vec v=\vec v^T\vec u=||u||p</script><p>注意p和$||u||$都是实数，p作为投影是有方向的（正负）。</p>
-<p>从而实现：</p>
-<script type="math/tex; mode=display">\theta^Tx^{(i)}=p^{(i)}·||\theta||</script><h3 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h3><p>如果说模型是：</p>
-<script type="math/tex; mode=display">\theta_0+\theta_1x_1+\theta_2x_2+...\theta_4x1^2+...</script><p>那么我们可以用一系列新的特征f来替换模型中的每一项，如：</p>
-<script type="math/tex; mode=display">f_1=x_1,f_2=x_2,f_3=x_1^2...</script><p>然而除了对原有特征进行组合以外，我们还可以用<strong>核函数</strong>来构建新的特征。</p>
-<p>给定一个训练实例x，我们可以利用x的各个特征与我们预先选定的landmarks，$l^{1},l^{(2)},l^{(3)}$的近似程度来选新的特征$f_1,f_2,f_3$，例如：</p>
-<script type="math/tex; mode=display">f_1=similarity(x,l^{(1)})=e(-\cfrac{||x-l^{(1)}||^2}{2\sigma^2})</script><p>其中：</p>
-<script type="math/tex; mode=display">||x-l^{(1)}||^2=\sum_{j=1}^{n}(x_j-l_j^{(1)})^2</script><p>即x中的所有特征与$l^{(1)}$的距离之和，上面的similarity就是一个高斯核函数。</p>
-<p>如果x与l之间距离近似于0，则新特征f→1；反之较远则f→0。</p>
-<p>（SVM也可以不使用核函数，不使用又称为线性核函数，一般训练集特征非常多而实例非常少的时候可以采用）</p>
-<p>下面是支持向量机的参数C（之前有）和$\delta$的影响：</p>
-<p>1.$\delta$较大时，可能导致低方差，高偏差；</p>
-<p>2.$\delta$较小时，可能导致低偏差，高方差。</p>
+<h1 id="《阿房宫赋》"><a href="#《阿房宫赋》" class="headerlink" title="《阿房宫赋》"></a>《阿房宫赋》</h1><p><strong>唐·杜牧</strong></p>
+<p>六王毕，四海一。蜀山兀，阿房出。覆压三百余里，隔离天日。骊山北构而西折，直走咸阳。二川溶溶，流入宫墙。五步一楼，十步一阁；廊腰缦回，檐牙高啄；各抱地势，钩心斗角。盘盘焉，囷囷焉，蜂房水涡，矗不知其几千万落。长桥卧波，未云何龙？复道行空，不霁何虹？高低冥迷，不知西东。歌台暖响，春光融融；舞殿冷袖，风雨凄凄。一日之内，一宫之间，而气候不齐。</p>
+<p>妃嫔媵嫱，王子皇孙，辞楼下殿，辇来于秦。朝歌夜弦，为秦宫人。明星荧荧，开妆镜也；绿云扰扰，梳晓鬟也；渭流涨腻，弃脂水也；烟斜雾横，焚椒兰也。雷霆乍惊，宫车过也；辘辘远听，杳不知其所之也。一肌一容，尽态极妍，缦立远视，而望幸焉。有不见者，三十六年。</p>
+<p>燕赵之收藏，韩魏之经营，齐楚之精英，几世几年，剽掠其人，倚叠如山。一旦不能有，输来其间。鼎铛玉石，金块珠砾，弃掷逦迤，秦人视之，亦不甚惜。</p>
+<p>嗟乎！一人之心，千万人之心也。秦爱纷奢，人亦念其家。奈何取之尽锱铢，用之如泥沙？使负栋之柱，多于南亩之农夫；架梁之椽，多于机上之工女；钉头磷磷，多于在庾之粟粒；瓦缝参差，多于周身之帛缕；直栏横槛，多于九土之城郭；管弦呕哑，多于市人之言语。使天下之人，不敢言而敢怒。独夫之心，日益骄固。戍卒叫，函谷举，楚人一炬，可怜焦土！</p>
+<p>呜呼！灭六国者六国也，非秦也；族秦者秦也，非天下也。嗟乎！使六国各爱其人，则足以拒秦；使秦复爱六国之人，则递三世可至万世而为君，谁得而族灭也？秦人不暇自哀，而后人哀之；后人哀之而不鉴之，亦使后人而复哀后人也。</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>这段时间，不少人每看见一个突发事件的新闻就要发一句“2020年是什么神仙开局”，包括但不限于球星去世/地震/枪击案/脱欧等等。事实上真正值得提的事情只有一件，它如此重要、影响如此深远（我都不敢说是不是“远”，至少是很严重）以至于引得这么多人无病呻吟。</p>
+<p>然而，1月19号时我还和伙伴们结伴去外地玩，甚至住了一天才回来。现在想起来都有些后怕，这一趟欢乐的行程里不知道冒了多少风险。说起来可笑，我们返程的路上已经在火车站看到有人戴口罩了，可彼时大家还在讨论“造谣”。回家后，事态飞速发展（当然我相信不是这短短一两天发展起来的，只是……），一两天之后就已经到了无法出门的程度。</p>
+<p>闲在家里也看了不少新闻，时而热血沸腾，不过更多时候都是愤慨和叹息。反倒是偶尔静下心看看书的时候，能体会到很多小时候不明白的道理。就像文献读不通过一段时间再看又有新理解一样。希望今后让人失望的事情会越来越少，后人哀之亦鉴之吧。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://li-zhe.com">LiZhe</a>
-            <p>原文链接：<a href="http://li-zhe.com/posts/4293844555/">http://li-zhe.com/posts/4293844555/</a>
-            <p>发表日期：<a href="http://li-zhe.com/posts/4293844555/">December 19th 2019, 10:44:34 am</a>
-            <p>更新日期：<a href="http://li-zhe.com/posts/4293844555/">January 2nd 2020, 9:13:59 am</a>
+            <p>原文链接：<a href="http://li-zhe.com/posts/20200209/">http://li-zhe.com/posts/20200209/</a>
+            <p>发表日期：<a href="http://li-zhe.com/posts/20200209/">February 9th 2020, 4:59:59 pm</a>
+            <p>更新日期：<a href="http://li-zhe.com/posts/20200209/">July 25th 2020, 9:27:27 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0国际许可协议</a>进行许可，转载请注明出处。</p>
         </div>
     
@@ -463,16 +446,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/posts/1635273383/" title= "机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)">
-                    <div class="nextTitle">机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</div>
+                <a href= "/posts/20200301/" title= "笔记-在家里也能用的基因组浏览器">
+                    <div class="nextTitle">笔记-在家里也能用的基因组浏览器</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/posts/1348010069/" title= "机器学习(3)--神经网络(Neural Network)及模型改进">
-                    <div class="prevTitle">机器学习(3)--神经网络(Neural Network)及模型改进</div>
+                <a href= "/posts/20191231/" title= "总结-2019年的结束&2020年的开始">
+                    <div class="prevTitle">总结-2019年的结束&2020年的开始</div>
                 </a>
             
         </li>
@@ -617,7 +600,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持向量机-SVM"><span class="toc-number">1.</span> <span class="toc-text">支持向量机(SVM)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从逻辑回归开始"><span class="toc-number">1.1.</span> <span class="toc-text">从逻辑回归开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核函数"><span class="toc-number">1.2.</span> <span class="toc-text">核函数</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#《阿房宫赋》"><span class="toc-number">1.</span> <span class="toc-text">《阿房宫赋》</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-number">2.</span> <span class="toc-text">其他</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -630,6 +613,22 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -786,12 +785,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200302/" >在家里也能用的IGV</a>
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200301/" >笔记-在家里也能用的基因组浏览器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/09</span><a class="archive-post-title" href= "/posts/2539078927/" >《阿房宫赋》</a>
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href= "/posts/20200209/" >《阿房宫赋》</a>
         </li>
     
     
@@ -805,37 +804,37 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/31</span><a class="archive-post-title" href= "/posts/20192020/" >2019年的总结&2020年的FLAG</a>
+            <span class="archive-post-date">12/31</span><a class="archive-post-title" href= "/posts/20191231/" >总结-2019年的结束&2020年的开始</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/posts/1648416303/" >机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习</a>
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/posts/20191221/" >笔记-机器学习(6)推荐系统(Recommender Systems)及大规模机器学习</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/posts/1635273383/" >机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</a>
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/posts/20191220/" >笔记-机器学习(5)无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/posts/4293844555/" >机器学习(4)--支持向量机(Support Vector Machine)</a>
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/posts/20191219/" >笔记-机器学习(4)支持向量机(Support Vector Machine)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/posts/1348010069/" >机器学习(3)--神经网络(Neural Network)及模型改进</a>
+            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/posts/20191218/" >笔记-机器学习(3)神经网络(Neural Network)及模型改进</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/posts/438233758/" >机器学习(2)--逻辑回归(Logistic Regression)及正则化(Normalization)</a>
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/posts/20191217/" >笔记-机器学习(2)逻辑回归(Logistic Regression)及正则化(Normalization)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/posts/1805300341/" >机器学习(1)--单变量线性回归及多维特征情形</a>
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/posts/20191216/" >笔记-机器学习(1)单变量线性回归及多维特征情形</a>
         </li>
     
     
@@ -845,12 +844,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/14</span><a class="archive-post-title" href= "/posts/1665412645/" >可能是建立个人网站的初衷</a>
+            <span class="archive-post-date">11/14</span><a class="archive-post-title" href= "/posts/20191114/" >随笔-可能是建立个人网站的初衷</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/posts/1398174703/" >Github新手入门指南</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/posts/20191006/" >笔记-Github新手入门指南</a>
         </li>
     
     </div>
@@ -882,19 +881,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="大规模机器学习"><span class="iconfont-archer">&#xe606;</span>大规模机器学习</span>
     
-        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
-    
-        <span class="sidebar-tag-name" data-tags="日常"><span class="iconfont-archer">&#xe606;</span>日常</span>
-    
         <span class="sidebar-tag-name" data-tags="Github"><span class="iconfont-archer">&#xe606;</span>Github</span>
     
-        <span class="sidebar-tag-name" data-tags="笔记"><span class="iconfont-archer">&#xe606;</span>笔记</span>
-    
-        <span class="sidebar-tag-name" data-tags="新手入门"><span class="iconfont-archer">&#xe606;</span>新手入门</span>
-    
-        <span class="sidebar-tag-name" data-tags="IGV"><span class="iconfont-archer">&#xe606;</span>IGV</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="时事评论"><span class="iconfont-archer">&#xe606;</span>时事评论</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -931,13 +922,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="随笔"><span class="iconfont-archer">&#xe60a;</span>随笔</span>
     
-        <span class="sidebar-category-name" data-categories="AndrewNg《MachineLearning》笔记"><span class="iconfont-archer">&#xe60a;</span>AndrewNg《MachineLearning》笔记</span>
-    
-        <span class="sidebar-category-name" data-categories="Git相关"><span class="iconfont-archer">&#xe60a;</span>Git相关</span>
-    
-        <span class="sidebar-category-name" data-categories="软件工具"><span class="iconfont-archer">&#xe60a;</span>软件工具</span>
-    
         <span class="sidebar-category-name" data-categories="时段总结"><span class="iconfont-archer">&#xe60a;</span>时段总结</span>
+    
+        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection) · ILLEGAL ARGUMENTS</title>
+    <title>笔记-机器学习(6)推荐系统(Recommender Systems)及大规模机器学习 · ILLEGAL ARGUMENTS</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -233,7 +233,7 @@
                 <a href="/" >ILLEGAL ARGUMENTS</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</a>
+                <a href="#" class="post-name">笔记-机器学习(6)推荐系统(Recommender Systems)及大规模机器学习</a>
             </div>
     </div>
     
@@ -263,7 +263,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)
+            笔记-机器学习(6)推荐系统(Recommender Systems)及大规模机器学习
             <!-- 404 -->
             
         </h1>
@@ -284,20 +284,20 @@ height:50vh;
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "机器学习">机器学习</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "无监督学习">无监督学习</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "推荐系统">推荐系统</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "异常检测">异常检测</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "大规模机器学习">大规模机器学习</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/12/20</span>
+                    <span class="post-intro-time">2019/12/21</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -422,48 +422,59 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <blockquote>
-<p>本文为吴恩达《机器学习》课程学习笔记的第5篇；<br>视频/作业/PPT等资源可在<a href="https://zh.coursera.org/learn/machine-learning" target="_blank" rel="noopener">Coursera</a>和<a href="https://study.163.com/course/courseLearn.htm?courseId=1004570029#/learn/video?lessonId=1049052745&amp;courseId=1004570029" target="_blank" rel="noopener">网易云课堂</a>等处找到；<br>其余篇章可见左侧Cate里的“Andrew Ng《Machine Learning》笔记”。</p>
+<p>本文为吴恩达《机器学习》课程学习笔记的第6篇；<br>视频/作业/PPT等资源可在<a href="https://zh.coursera.org/learn/machine-learning" target="_blank" rel="noopener">Coursera</a>和<a href="https://study.163.com/course/courseLearn.htm?courseId=1004570029#/learn/video?lessonId=1049052745&amp;courseId=1004570029" target="_blank" rel="noopener">网易云课堂</a>等处找到；<br>其余篇章可见左侧Cate里的“Andrew Ng《Machine Learning》笔记”。</p>
 </blockquote>
-<h2 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h2><h3 id="K-means聚类"><a href="#K-means聚类" class="headerlink" title="K-means聚类"></a>K-means聚类</h3><p>首先选择K个随机的点，为<strong>聚类中心</strong>，然后对于数据集中的每一个数据，按照距离K个中心点的距离，将其与距离最近的中心点归为一类。再计算每个类的平均值，把该类的中心点移动到平均值的位置，重复对数据点进行聚类。——直到中心点不再变化。</p>
-<h4 id="随机初始化"><a href="#随机初始化" class="headerlink" title="随机初始化"></a>随机初始化</h4><p>随机选择K&lt;m（训练集实例数量）个训练实例，然后令K个聚类中心分别与这K个训练实例相等。</p>
-<p>为了解决局部最小值问题，通常进行多次K-means运算，每一次都重新进行随机初始化，最后再比较结果。</p>
-<h4 id="选择聚类数（肘部法则）"><a href="#选择聚类数（肘部法则）" class="headerlink" title="选择聚类数（肘部法则）"></a>选择聚类数（肘部法则）</h4><p>更改K的值，直到代价函数下降较慢。（类似PCA碎石图）</p>
-<h3 id="数据降维"><a href="#数据降维" class="headerlink" title="数据降维"></a>数据降维</h3><p>从二维降到一维 → 如将二元坐标点投影到一条线段上。</p>
-<p>从三维到二维 → 如将三元坐标点投影到一个二维平面上。</p>
-<p>数据可视化？ → 新产生特征的意义需要自己去发现。</p>
-<h4 id="主成分分析（PCA）"><a href="#主成分分析（PCA）" class="headerlink" title="主成分分析（PCA）"></a>主成分分析（PCA）</h4><p>第一步，均值归一化，计算出所有特征的均值，然后令$x_j=x_j-\mu_j$，如果特征在不同数量级上，还需要除以标准差$\sigma^2$。</p>
-<p>第二步，计算协方差矩阵：</p>
-<script type="math/tex; mode=display">\Sigma=\cfrac{1}{m}\sum_{i=1}^n(x^{(i)})(x^{(i)})^T</script><p>第三步，计算协方差矩阵的特征向量：</p>
-<script type="math/tex; mode=display">[U,S,V] = svd(\Sigma)</script><p>U即是一个具有与数据之间最小投射误差的方向向量构成的矩阵，若想将数据从n维降到k维，只需从U中选取前k个向量，得到一个新的n×k的矩阵用$U_reduce$表示，然后计算得新的特征向量：</p>
-<script type="math/tex; mode=display">z^{(i)}=U_{reduce}^T*x^{(i)}</script><p>x是n×1维的，所以结果为k×1维。</p>
-<p>而S是一个n×n的矩阵，只有对角线上有值，可以用来计算平均均方误差与训练集方差的比例（小于1%为例）：</p>
-<script type="math/tex; mode=display">\cfrac{\sum_{i=1}^{k}S_{ii}}{\sum_{i=1}^{n}S_{ii}}>=0.99</script><p>压缩数据后，近似地获得原有特征：</p>
-<script type="math/tex; mode=display">x^{(i)}_{approx}=U_{reduce}^T*z^{(i)}</script><h2 id="异常检测"><a href="#异常检测" class="headerlink" title="异常检测"></a>异常检测</h2><p>给定数据集，已知数据集正常，那么如何判断一个新的数据是不是异常值，以及这个新数据不属于这一组数据的几率如何？</p>
-<h3 id="高斯分布"><a href="#高斯分布" class="headerlink" title="高斯分布"></a>高斯分布</h3><p>高斯分布即正态分布，符合之的变量$x~N(\mu,\sigma^2)$,其概率密度函数为：</p>
-<script type="math/tex; mode=display">p(x,\mu,\sigma^2)=\cfrac{1}{\sqrt{2\pi}\sigma}exp{-\cfrac{(x-\mu)^2}{2\sigma^2}}</script><p>其中的$\mu$和$\sigma^2$分别为均值和方差，$\mu$影响中点位置，$\sigma^2$影响峰的宽度高度。</p>
-<h3 id="异常检测算法"><a href="#异常检测算法" class="headerlink" title="异常检测算法"></a>异常检测算法</h3><p>给定数据集$x^{(1)}-x^{(m)}-$，则针对每一个特征计算mu和sigma的估计值：</p>
-<script type="math/tex; mode=display">\mu_j=\cfrac{1}{m}\sum_{i=1}^{m}x_j^{(i)}</script><script type="math/tex; mode=display">\sigma_j^2=\cfrac{1}{m}\sum_{i=1}^{m}(x_j^(i)-\mu_j)^2</script><p>获得两个估计值后，和给定的新训练实例$x_j$一起代入高斯分布计算p(x)：</p>
-<script type="math/tex; mode=display">p(x)=\prod^{n}_{j=1}p(x_j;\mu_j;\sigma_j^2)</script><p>当$p(x)&lt;\epsilon$时即为<strong>异常</strong>。</p>
-<p>注意：异常检测与监督学习有些相似，但最大的不同在于异常检测的正向类（异常数据y=1）非常少，负向类非常多（正常数据y=0）！而监督学习同时拥有大量的正和负类。</p>
-<h3 id="开发异常检测系统"><a href="#开发异常检测系统" class="headerlink" title="开发异常检测系统"></a>开发异常检测系统</h3><p>作为一个非监督学习算法，在用其开发一个异常检测系统时，需要注意数据的选取：</p>
-<p>如有10000个正常数据，其中有20个异常，那么建议如下<strong>分配</strong>：</p>
-<p>6000个正常数据作为训练集；</p>
-<p>2000个正常数据和10个异常数据作为交叉检验集；</p>
-<p>2000个正常数据和10个异常数据作为测试集。</p>
-<p>而<strong>评价方法</strong>如下：</p>
-<p>1.根据训练集数据，估计特征的均值和方差，并构建p(x)；</p>
-<p>2.对交叉检验集，用不同的$\epsilon$值作阈值，预测数据是否异常；并根据F1选择$\epsilon$；</p>
-<p>3.选出$\epsilon$后，针对测试集进行预测，计算F1值。</p>
-<h3 id="选择特征"><a href="#选择特征" class="headerlink" title="选择特征"></a>选择特征</h3><p>如果数据分布不是高斯分布，可以通过对数变换或者指数变换使之成为高斯分布。</p>
+<h2 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h2><p>想想网易云音乐是如何进行每日推荐？这就是推荐系统。</p>
+<h3 id="基于内容的推荐系统"><a href="#基于内容的推荐系统" class="headerlink" title="基于内容的推荐系统"></a>基于内容的推荐系统</h3><p>假设有不同部电影，有不同的人给他们打分，每部电影有不同的特征（如2个）【向量形式】；如何基于这些信息来构建一个推荐系统算法呢？——假设用线性回归模型：</p>
+<p>$\theta^{(j)}$是用户j的参数向量（打分情况）</p>
+<p>$x^{(i)}$是电影i的特征向量（浪漫程度、动作程度等）</p>
+<p>对于用户j和电影i，我们预测评分为：</p>
+<script type="math/tex; mode=display">(\theta^{(i)})^Tx^{(i)}</script><p>之后参照线性回归和梯度下降求解。</p>
+<h3 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h3><p>如果我们没有用户的参数（评分），也没有电影的特征（浪漫程度、动作程度），可以通过协同过滤算法同时学习两者：</p>
+<p>优化目标（代价函数）更改为同时针对x和$\theta$进行，具体步骤如下：</p>
+<p>1.初始的x和$\theta$为一些随机的小值；</p>
+<p>2.使用梯度下降算法最小化代价函数；</p>
+<p>3.训练完算法后，预测用户j给电影i的评分。</p>
+<h3 id="向量化：低秩矩阵分解（？）"><a href="#向量化：低秩矩阵分解（？）" class="headerlink" title="向量化：低秩矩阵分解（？）"></a>向量化：低秩矩阵分解（？）</h3><h3 id="均值归一化"><a href="#均值归一化" class="headerlink" title="均值归一化"></a>均值归一化</h3><p>当某用户没有任何基础参数时，怎么办呢？→对所有数据进行均值归一化处理（减去均值），利用处理后的新矩阵来训练算法，用新训练出的算法预测评分后，将平均值加回去！即预测：</p>
+<script type="math/tex; mode=display">(\theta^{(i)})^T+\mu_i</script><h2 id="大规模机器学习"><a href="#大规模机器学习" class="headerlink" title="大规模机器学习"></a>大规模机器学习</h2><p>当有大量数据（如1000w条）作为训练集时，我们如何应对？</p>
+<p>可以作出交叉验证集的代价函数和训练集代价函数随着训练样本数增加的变化曲线，或许只需要1000个训练集就能取得很好的结果。</p>
+<h3 id="随机梯度下降法"><a href="#随机梯度下降法" class="headerlink" title="随机梯度下降法"></a>随机梯度下降法</h3><p>将代价函数定义为一个单一训练实例的代价：</p>
+<script type="math/tex; mode=display">cost(\theta,(x^{(i)},y^{(i)})=\cfrac{1}{2}(h_\theta(x^{(i)})-y^{(i)})^2</script><p><strong>随机</strong>的意思即，对训练集随机“洗牌”，然后：</p>
+<script type="math/tex; mode=display">
+Repeat(usually 1-10)
+{
+   for i=1:m{
+       \theta:=\theta_j-\alpha(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)}
+     (for j=0:n)
+   }
+}</script><p>其好处在于每一次计算后都更新$\theta$，而不需将大量训练集求和。缺点是，并不是每一步都朝正确的方向走去，甚至有可能无法走到最小值的那一点，而是在最小值点附近徘徊。</p>
+<h3 id="小批量梯度下降"><a href="#小批量梯度下降" class="headerlink" title="小批量梯度下降"></a>小批量梯度下降</h3><p>介于批量梯度下降和随机下降算法之间，每计算常数b次训练实例，便更新一次参数$\theta$，一般令b=2-100，从而可以用项量化的方式来循环b个训练实例。</p>
+<h3 id="随机梯度下降收敛"><a href="#随机梯度下降收敛" class="headerlink" title="随机梯度下降收敛"></a>随机梯度下降收敛</h3><p>在随机梯度下降中，每一次更新$\theta$之前都计算一次代价，然后每x次迭代后，求出这x次对训练实例计算代价的平均值，然后绘制这些平均值与x迭代的次数之间的函数图表。</p>
+<p>1.函数图像颠簸不平，但<strong>不明显减少</strong>：考虑增大$\alpha$</p>
+<p>2.函数图像<strong>不断上升</strong>：考虑减小$\alpha$，如令学习率随迭代次数的增加而减小，比如：</p>
+<script type="math/tex; mode=display">\alpha=\cfrac{const1}{iterationNumber+const2}</script><h3 id="在线学习"><a href="#在线学习" class="headerlink" title="在线学习"></a>在线学习</h3><p>有连续的数据流，而非静态的数据集。</p>
+<p>因而也是对一个单一实例进行训练，而非训练集！且一旦一个数据学习完成了，可以丢弃之。</p>
+<h3 id="映射化简和数据并行"><a href="#映射化简和数据并行" class="headerlink" title="映射化简和数据并行"></a>映射化简和数据并行</h3><p>把数据集分配给多台计算机，每个计算机求一个子集，再将结果汇总。（或者利用多核CPU的多个核心进行并行运算）<br>假设400个训练实例被分配到4台计算机进行处理，最后</p>
+<script type="math/tex; mode=display">\theta_j=\theta_j-\alpha\cfrac{1}{400}(temp^{(1)})(temp^{(2)})(temp^{(3)})(temp^{(4)})</script><h2 id="应用实例：图片文字识别"><a href="#应用实例：图片文字识别" class="headerlink" title="应用实例：图片文字识别"></a>应用实例：图片文字识别</h2><p>从图片中识取文字并辨认出来：</p>
+<p>1.文字侦测——将图片上的文字与其他环境对象分离</p>
+<p>2.字符切分——将文字分割成一个个单一的字符</p>
+<p>3.字符分类——确定每一个字符是什么</p>
+<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p>按比例框定窗口，按比例放大缩小扫描整张图片。交给模型进行评判。完成识别后，还可以将识别区域进行扩展。</p>
+<h3 id="获得大量数据和人工数据"><a href="#获得大量数据和人工数据" class="headerlink" title="获得大量数据和人工数据"></a>获得大量数据和人工数据</h3><p>人工数据——如识别文字，可以用字体库+背景自己创造数据</p>
+<p>已有数据修改——如文字图片的扭曲、旋转和模糊处理</p>
+<p>手动标记或众包</p>
+<h3 id="上限分析"><a href="#上限分析" class="headerlink" title="上限分析"></a>上限分析</h3><p>在改进算法的过程中，假设某一个步骤（人工地使之）完全正确，对比不人工处理情况下的预测准确率，对不同的步骤都进行处理，选择改进空间最大的着力改进。</p>
+<p>—</p>
+<p>以上，机器学习的笔记暂时告一段落。这些都是暑假后半段自学的内容，再输出一遍同时自己也复习一下。如果有补充可能会直接文内更新/在新文章里加对应tag。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://li-zhe.com">LiZhe</a>
-            <p>原文链接：<a href="http://li-zhe.com/posts/1635273383/">http://li-zhe.com/posts/1635273383/</a>
-            <p>发表日期：<a href="http://li-zhe.com/posts/1635273383/">December 20th 2019, 10:17:34 am</a>
-            <p>更新日期：<a href="http://li-zhe.com/posts/1635273383/">January 7th 2020, 3:06:07 pm</a>
+            <p>原文链接：<a href="http://li-zhe.com/posts/20191221/">http://li-zhe.com/posts/20191221/</a>
+            <p>发表日期：<a href="http://li-zhe.com/posts/20191221/">December 21st 2019, 12:17:34 pm</a>
+            <p>更新日期：<a href="http://li-zhe.com/posts/20191221/">July 25th 2020, 9:25:02 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0国际许可协议</a>进行许可，转载请注明出处。</p>
         </div>
     
@@ -472,16 +483,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/posts/1648416303/" title= "机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习">
-                    <div class="nextTitle">机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习</div>
+                <a href= "/posts/20191231/" title= "总结-2019年的结束&2020年的开始">
+                    <div class="nextTitle">总结-2019年的结束&2020年的开始</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/posts/4293844555/" title= "机器学习(4)--支持向量机(Support Vector Machine)">
-                    <div class="prevTitle">机器学习(4)--支持向量机(Support Vector Machine)</div>
+                <a href= "/posts/20191220/" title= "笔记-机器学习(5)无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)">
+                    <div class="prevTitle">笔记-机器学习(5)无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</div>
                 </a>
             
         </li>
@@ -626,7 +637,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#无监督学习"><span class="toc-number">1.</span> <span class="toc-text">无监督学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#K-means聚类"><span class="toc-number">1.1.</span> <span class="toc-text">K-means聚类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#随机初始化"><span class="toc-number">1.1.1.</span> <span class="toc-text">随机初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择聚类数（肘部法则）"><span class="toc-number">1.1.2.</span> <span class="toc-text">选择聚类数（肘部法则）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据降维"><span class="toc-number">1.2.</span> <span class="toc-text">数据降维</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主成分分析（PCA）"><span class="toc-number">1.2.1.</span> <span class="toc-text">主成分分析（PCA）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常检测"><span class="toc-number">2.</span> <span class="toc-text">异常检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#高斯分布"><span class="toc-number">2.1.</span> <span class="toc-text">高斯分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常检测算法"><span class="toc-number">2.2.</span> <span class="toc-text">异常检测算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发异常检测系统"><span class="toc-number">2.3.</span> <span class="toc-text">开发异常检测系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择特征"><span class="toc-number">2.4.</span> <span class="toc-text">选择特征</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐系统"><span class="toc-number">1.</span> <span class="toc-text">推荐系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于内容的推荐系统"><span class="toc-number">1.1.</span> <span class="toc-text">基于内容的推荐系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协同过滤"><span class="toc-number">1.2.</span> <span class="toc-text">协同过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向量化：低秩矩阵分解（？）"><span class="toc-number">1.3.</span> <span class="toc-text">向量化：低秩矩阵分解（？）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#均值归一化"><span class="toc-number">1.4.</span> <span class="toc-text">均值归一化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#大规模机器学习"><span class="toc-number">2.</span> <span class="toc-text">大规模机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#随机梯度下降法"><span class="toc-number">2.1.</span> <span class="toc-text">随机梯度下降法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小批量梯度下降"><span class="toc-number">2.2.</span> <span class="toc-text">小批量梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#随机梯度下降收敛"><span class="toc-number">2.3.</span> <span class="toc-text">随机梯度下降收敛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在线学习"><span class="toc-number">2.4.</span> <span class="toc-text">在线学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#映射化简和数据并行"><span class="toc-number">2.5.</span> <span class="toc-text">映射化简和数据并行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用实例：图片文字识别"><span class="toc-number">3.</span> <span class="toc-text">应用实例：图片文字识别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#滑动窗口"><span class="toc-number">3.1.</span> <span class="toc-text">滑动窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获得大量数据和人工数据"><span class="toc-number">3.2.</span> <span class="toc-text">获得大量数据和人工数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上限分析"><span class="toc-number">3.3.</span> <span class="toc-text">上限分析</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -639,6 +650,22 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -795,12 +822,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200302/" >在家里也能用的IGV</a>
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/posts/20200301/" >笔记-在家里也能用的基因组浏览器</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/09</span><a class="archive-post-title" href= "/posts/2539078927/" >《阿房宫赋》</a>
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href= "/posts/20200209/" >《阿房宫赋》</a>
         </li>
     
     
@@ -814,37 +841,37 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/31</span><a class="archive-post-title" href= "/posts/20192020/" >2019年的总结&2020年的FLAG</a>
+            <span class="archive-post-date">12/31</span><a class="archive-post-title" href= "/posts/20191231/" >总结-2019年的结束&2020年的开始</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/posts/1648416303/" >机器学习(6)--推荐系统(Recommender Systems)及大规模机器学习</a>
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href= "/posts/20191221/" >笔记-机器学习(6)推荐系统(Recommender Systems)及大规模机器学习</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/posts/1635273383/" >机器学习(5)--无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</a>
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/posts/20191220/" >笔记-机器学习(5)无监督学习(Unsupervised Learning)及异常检测(Outlier Detection)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/posts/4293844555/" >机器学习(4)--支持向量机(Support Vector Machine)</a>
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/posts/20191219/" >笔记-机器学习(4)支持向量机(Support Vector Machine)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/posts/1348010069/" >机器学习(3)--神经网络(Neural Network)及模型改进</a>
+            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/posts/20191218/" >笔记-机器学习(3)神经网络(Neural Network)及模型改进</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/posts/438233758/" >机器学习(2)--逻辑回归(Logistic Regression)及正则化(Normalization)</a>
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/posts/20191217/" >笔记-机器学习(2)逻辑回归(Logistic Regression)及正则化(Normalization)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/posts/1805300341/" >机器学习(1)--单变量线性回归及多维特征情形</a>
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/posts/20191216/" >笔记-机器学习(1)单变量线性回归及多维特征情形</a>
         </li>
     
     
@@ -854,12 +881,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/14</span><a class="archive-post-title" href= "/posts/1665412645/" >可能是建立个人网站的初衷</a>
+            <span class="archive-post-date">11/14</span><a class="archive-post-title" href= "/posts/20191114/" >随笔-可能是建立个人网站的初衷</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/posts/1398174703/" >Github新手入门指南</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/posts/20191006/" >笔记-Github新手入门指南</a>
         </li>
     
     </div>
@@ -891,19 +918,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="大规模机器学习"><span class="iconfont-archer">&#xe606;</span>大规模机器学习</span>
     
-        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
-    
-        <span class="sidebar-tag-name" data-tags="日常"><span class="iconfont-archer">&#xe606;</span>日常</span>
-    
         <span class="sidebar-tag-name" data-tags="Github"><span class="iconfont-archer">&#xe606;</span>Github</span>
     
-        <span class="sidebar-tag-name" data-tags="笔记"><span class="iconfont-archer">&#xe606;</span>笔记</span>
-    
-        <span class="sidebar-tag-name" data-tags="新手入门"><span class="iconfont-archer">&#xe606;</span>新手入门</span>
-    
-        <span class="sidebar-tag-name" data-tags="IGV"><span class="iconfont-archer">&#xe606;</span>IGV</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="时事评论"><span class="iconfont-archer">&#xe606;</span>时事评论</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -940,13 +959,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="随笔"><span class="iconfont-archer">&#xe60a;</span>随笔</span>
     
-        <span class="sidebar-category-name" data-categories="AndrewNg《MachineLearning》笔记"><span class="iconfont-archer">&#xe60a;</span>AndrewNg《MachineLearning》笔记</span>
-    
-        <span class="sidebar-category-name" data-categories="Git相关"><span class="iconfont-archer">&#xe60a;</span>Git相关</span>
-    
-        <span class="sidebar-category-name" data-categories="软件工具"><span class="iconfont-archer">&#xe60a;</span>软件工具</span>
-    
         <span class="sidebar-category-name" data-categories="时段总结"><span class="iconfont-archer">&#xe60a;</span>时段总结</span>
+    
+        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
